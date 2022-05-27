@@ -27,5 +27,9 @@ class FirstFragment : Fragment() {
         view.findViewById<TextView>(R.id.register).setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+
+        view.findViewById<TextView>(R.id.forgotPassword).setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_ThirdFragment)
+        }
     }
 }
