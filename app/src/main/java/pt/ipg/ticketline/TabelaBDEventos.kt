@@ -3,9 +3,9 @@ package pt.ipg.ticketline
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
 
-class TabelaBDEventos(val db: SQLiteDatabase) {
-    fun cria() {
-        db.execSQL("CREATE TABLE $NOME (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
+class TabelaBDEventos(db: SQLiteDatabase) : TabelaBD(db, NOME) {
+    override fun cria() {
+        db.execSQL("CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " $CAMPO_NOME TEXT NOT NULL),"+
                 " $CAMPO_DATA DATE NOT NULL),"+
                 "$CAMPO_ARTISTA_ID INTEGER NOT NULL, FOREIGN KEY ($CAMPO_ARTISTA_ID) REFERENCES ${TabelaBDArtistas.NOME}(${BaseColumns._ID}) ON DELETE RESTRICT),"+

@@ -3,10 +3,10 @@ package pt.ipg.ticketline
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
 
-class TabelaBDLocais(val db: SQLiteDatabase) {
+class TabelaBDLocais(db: SQLiteDatabase) : TabelaBD(db, NOME) {
 
-    fun cria() {
-        db.execSQL("CREATE TABLE $NOME (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
+    override fun cria() {
+        db.execSQL("CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " $CAMPO_NOME TEXT NOT NULL),"+
                 " $CAMPO_LOCALIZACAO TEXT NOT NULL),"+
                 " $CAMPO_ENDRECO TEXT NOT NULL),"+

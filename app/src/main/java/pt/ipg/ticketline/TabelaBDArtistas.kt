@@ -3,9 +3,9 @@ package pt.ipg.ticketline
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
 
-class TabelaBDArtistas(val db: SQLiteDatabase) {
-    fun cria() {
-        db.execSQL("CREATE TABLE $NOME (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
+class TabelaBDArtistas(db: SQLiteDatabase) : TabelaBD(db, NOME) {
+    override fun cria() {
+        db.execSQL("CREATE TABLE $nome (${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " $CAMPO_NOME TEXT NOT NULL),"+
                 " $CAMPO_GENERO_MUSICAL TEXT NOT NULL),"+
                 " $CAMPO_NACIONALIDADE TEXT NOT NULL),")
