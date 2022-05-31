@@ -20,6 +20,7 @@ class BDEventoOpenHelper(
 
             if (db != null) {
                 TabelaBDLocais(db).cria()
+                TabelaBDArtistas(db).cria()
 
             }
 
