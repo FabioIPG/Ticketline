@@ -19,6 +19,11 @@ class BaseDadosTest {
     fun appContext() =
             InstrumentationRegistry.getInstrumentation().targetContext
 
+    @Before
+    fun apagaBaseDados() {
+        appContext().deleteDatabase(BDEventoOpenHelper.NOME)
+    }
+
     @Test
     fun consegueAbrirBaseDados() {
         val openHelper = BDEventoOpenHelper(appContext())
