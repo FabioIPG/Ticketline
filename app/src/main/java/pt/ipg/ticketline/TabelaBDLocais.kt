@@ -13,7 +13,7 @@ class TabelaBDLocais(db: SQLiteDatabase) : TabelaBD(db, NOME) {
                 " $CAMPO_PROPRIATARIO TEXT NOT NULL),"+
                 " $CAMPO_ANO_INAUGURACAO INTEGER NOT NULL),"+
                 " $CAMPO_TIPO TEXT NOT NULL),"+
-                " $CAMPO_CAPACIDADE INTEGER NOT NULL),")
+                " $CAMPO_CAPACIDADE INTEGER NOT NULL)")
     }
 
     companion object {
