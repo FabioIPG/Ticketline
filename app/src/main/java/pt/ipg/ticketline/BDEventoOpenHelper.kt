@@ -16,7 +16,7 @@ class BDEventoOpenHelper(context: Context?) : SQLiteOpenHelper(context, NOME, nu
             if (db != null) {
                 TabelaBDLocais(db).cria()
                 TabelaBDArtistas(db).cria()
-                TabelaBDEventos(db).cria()
+                //TabelaBDEventos(db).cria()
             }
 
         }
