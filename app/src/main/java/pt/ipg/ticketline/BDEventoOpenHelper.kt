@@ -5,11 +5,11 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class BDEventoOpenHelper(
-    context: Context?,
-    name: String?,
-    factory: SQLiteDatabase.CursorFactory?,
-    version: Int
-    ) : SQLiteOpenHelper(context, name, factory, version) {
+        context: Context?,
+        name: String?,
+        factory: SQLiteDatabase.CursorFactory?,
+        version: Int
+) : SQLiteOpenHelper(context, name, factory, version) {
         /**
          * Called when the database is created for the first time. This is where the
          * creation of tables and the initial population of the tables should happen.
@@ -17,6 +17,11 @@ class BDEventoOpenHelper(
          * @param db The database.
          */
         override fun onCreate(db: SQLiteDatabase?) {
+
+            if (db != null) {
+                TabelaBDLocais(db).cria()
+
+            }
 
         }
 
