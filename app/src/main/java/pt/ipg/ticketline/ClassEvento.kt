@@ -1,14 +1,16 @@
 package pt.ipg.ticketline
 
 import android.content.ContentValues
-import java.util.*
 
-data class Evento(
-        var id: Long,
+data class ClassEvento(
+
         var nome_evento: String,
         var data: String,
-        var artistaId: Long,
-        var localId: Long
+        /*
+        var artista_id: Long,
+        var local_id: Long,
+        */
+        var id: Long= -1
 
 ) {
     fun toContentValues() : ContentValues {
@@ -16,8 +18,10 @@ data class Evento(
 
         valores.put(TabelaBDEventos.CAMPO_NOME,nome_evento )
         valores.put(TabelaBDEventos.CAMPO_DATA, data)
-        valores.put(TabelaBDEventos.CAMPO_ARTISTA_ID, artistaId)
-        valores.put(TabelaBDEventos.CAMPO_LOCAL_ID, localId)
+        /*
+        valores.put(TabelaBDEventos.CAMPO_ARTISTA_ID, artista_id)
+        valores.put(TabelaBDEventos.CAMPO_LOCAL_ID, local_id)
+         */
 
         return valores
     }

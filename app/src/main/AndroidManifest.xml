@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ticketline">
         <activity
-            android:name=".MainActivity"
+            android:name=".FragMainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.Ticketline.NoActionBar">
             <intent-filter>
