@@ -7,9 +7,9 @@ data class ClassLocal(
         var localizacao: String,
         var endereço: String,
         var capacidade: String,
-        /*
-        var tipo_recinto_id: String,
-         */
+
+        var tipo_recinto_id: Long,
+
         var id: Long = -1,
         ) {
     fun toContentValues() : ContentValues {
@@ -18,9 +18,9 @@ data class ClassLocal(
         valores.put(TabelaBDLocais.CAMPO_LOCALIZACAO, localizacao)
         valores.put(TabelaBDLocais.CAMPO_ENDRECO, endereço)
         valores.put(TabelaBDLocais.CAMPO_CAPACIDADE, capacidade)
-        /*
+
         valores.put(TabelaBDLocais.CAMPO_TIPO_RECINTO_ID, tipo_recinto_id)
-         */
+
 
         return valores
     }
