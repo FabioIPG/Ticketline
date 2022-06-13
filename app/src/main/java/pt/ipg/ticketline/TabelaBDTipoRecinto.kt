@@ -12,5 +12,7 @@ class TabelaBDTipoRecinto (db: SQLiteDatabase) : TabelaBD(db, NOME) {
     companion object {
         const val NOME = "tipo_recinto"
         const val CAMPO_NOME_TIPO_RECINTO = "nome_tipo_recinto"
+
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_NOME_TIPO_RECINTO)
     }
 }

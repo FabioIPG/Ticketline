@@ -23,6 +23,6 @@ class TabelaBDEventos(db: SQLiteDatabase) : TabelaBD(db, NOME) {
         const val CAMPO_LOCAL_ID = "local_id"
         const val CAMPO_PROMOTOR_ID = "promotor_id"
 
-
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_NOME, CAMPO_DATA, CAMPO_ARTISTA_ID, CAMPO_LOCAL_ID, CAMPO_PROMOTOR_ID)
     }
 }

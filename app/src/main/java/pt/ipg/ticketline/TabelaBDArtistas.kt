@@ -24,5 +24,6 @@ class TabelaBDArtistas(db: SQLiteDatabase) : TabelaBD(db, NOME) {
 
         const val CAMPO_TELEMOVEL = "telemovel"
 
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_NOME_DO_ARTISTA, CAMPO_ENDERECO, CAMPO_NACIONALIDADE, CAMPO_TELEMOVEL, CAMPO_CATEGORIA_ID)
     }
 }

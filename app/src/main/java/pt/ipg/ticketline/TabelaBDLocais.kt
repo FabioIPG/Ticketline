@@ -25,7 +25,7 @@ class TabelaBDLocais(db: SQLiteDatabase) : TabelaBD(db, NOME) {
 
         const val CAMPO_TIPO_RECINTO_ID = "tipo_recinto_id"
 
-
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_NOME_LOCAL, CAMPO_LOCALIZACAO, CAMPO_ENDRECO, CAMPO_CAPACIDADE, CAMPO_TIPO_RECINTO_ID)
     }
 
 }
