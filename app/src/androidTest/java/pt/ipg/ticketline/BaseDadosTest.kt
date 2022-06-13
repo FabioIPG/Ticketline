@@ -1,6 +1,7 @@
 package pt.ipg.ticketline
 
 import android.database.sqlite.SQLiteDatabase
+import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -17,7 +18,7 @@ import org.junit.Before
  */
 @RunWith(AndroidJUnit4::class)
 class BaseDadosTest {
-    fun appContext() =
+    private fun appContext() =
             InstrumentationRegistry.getInstrumentation().targetContext
 
     private fun getWritableDatabase(): SQLiteDatabase {
@@ -50,6 +51,10 @@ class BaseDadosTest {
         assertNotEquals(-1, local.id)
     }
 
+    private fun  insereEvento(db: SQLiteDatabase, evento: ClassEvento) {
+        evento.id = TabelaBDEventos(db).insert(evento.toContentValues())
+        assertNotEquals(-1, evento.id)
+    }
 
     @Before
     fun apagaBaseDados() {
@@ -117,9 +122,7 @@ class BaseDadosTest {
         inserePromotor(db, promotor)
 
         val evento = ClassEvento("DIOGOPIÇARRA","08-08-2022", artista.id, local.id, promotor.id)
-        evento.id = TabelaBDEventos(db).insert(evento.toContentValues())
-
-        assertNotEquals(-1, evento.id)
+        insereEvento(db, evento)
 
         db.close()
     }
@@ -146,4 +149,148 @@ class BaseDadosTest {
 
         db.close()
     }
+
+    @Test
+    fun consegueAlterarCategoria() {
+        val db = getWritableDatabase()
+
+        val categoria = ClassCategoria("Teste")
+        insereCategoria(db, categoria)
+
+        categoria.nome_categoria = "Pop"
+
+        val registosAlterados = TabelaBDCategoria(db).update(
+                categoria.toContentValues(),
+                "${BaseColumns._ID}=?",
+                arrayOf("${categoria.id}"))
+
+        assertEquals(1,registosAlterados)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueAlterarArtista() {
+        val db = getWritableDatabase()
+        val categoria = ClassCategoria("TesteCat")
+        insereCategoria(db, categoria)
+
+        val artista = ClassArtista("teste","teste","teste","935666458",categoria.id)
+        insereArtista(db, artista)
+
+        artista.nome_do_artista = "Billie Eilish"
+        artista.endereço = " Los Angeles, Califórnia, EUA"
+        artista.nacionalidade = "Estadunidense"
+        artista.telemovel = "933516760"
+        artista.categoria_id = categoria.id
+
+        val registosAlterados = TabelaBDArtistas(db).update(
+                artista.toContentValues(),
+                "${BaseColumns._ID}=?",
+                arrayOf("${categoria.id}"))
+
+        assertEquals(1,registosAlterados)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueAlterarPromotor() {
+        val db = getWritableDatabase()
+
+        val promotor = ClassPromotor("Teste")
+        inserePromotor(db, promotor)
+
+        promotor.nome_promotor = "KILT"
+
+        val registosAlterados = TabelaBDPromotor(db).update(
+                promotor.toContentValues(),
+                "${BaseColumns._ID}=?",
+                arrayOf("${promotor.id}"))
+
+        assertEquals(1,registosAlterados)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueAlterarTipoRecinto() {
+        val db = getWritableDatabase()
+
+        val tipoRecinto = ClassTipoRecinto("Teste")
+        insereTipoRecinto(db, tipoRecinto)
+
+        tipoRecinto.nome_tipo_recinto = "relvado"
+
+        val registosAlterados = TabelaBDTipoRecinto(db).update(
+                tipoRecinto.toContentValues(),
+                "${BaseColumns._ID}=?",
+                arrayOf("${tipoRecinto.id}"))
+
+        assertEquals(1,registosAlterados)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueAlterarLocal() {
+        val db = getWritableDatabase()
+        val tipoRecinto = ClassTipoRecinto("Teste")
+        insereTipoRecinto(db, tipoRecinto)
+
+        val local = ClassLocal("teste","teste","teste","9356",tipoRecinto.id)
+        insereLocal(db, local)
+
+        local.nome_local = "Centro Cultural Gil Vicente"
+        local.localizacao = " Sardoal"
+        local.endereço = "Rua Dom João III, 2230-135 Sardoal"
+        local.capacidade = "760"
+        local.tipo_recinto_id = tipoRecinto.id
+
+        val registosAlterados = TabelaBDLocais(db).update(
+                local.toContentValues(),
+                "${BaseColumns._ID}=?",
+                arrayOf("${local.id}"))
+
+        assertEquals(1,registosAlterados)
+
+        db.close()
+    }
+
+    fun consegueAlterarEvento() {
+        val db = getWritableDatabase()
+        val promotor = ClassPromotor("Teste")
+        inserePromotor(db, promotor)
+
+        val tipoRecinto = ClassTipoRecinto("Teste")
+        insereTipoRecinto(db, tipoRecinto)
+
+        val categoria = ClassCategoria("Teste")
+        insereCategoria(db, categoria)
+
+        val artista = ClassArtista("Teste","Teste","Teste","951265245",categoria.id)
+        insereTipoRecinto(db, tipoRecinto)
+
+        val local = ClassLocal("Teste","Teste","Teste","3515", tipoRecinto.id)
+        insereLocal(db, local)
+
+        val evento = ClassEvento("Teste","Teste",artista.id,local.id,promotor.id)
+        insereEvento(db, evento)
+
+        evento.nome_evento = "Processo"
+        evento.data = "18-11-2022"
+        evento.artista_id = artista.id
+        evento.local_id = local.id
+        evento.promotor_id = promotor.id
+
+        val registosAlterados = TabelaBDEventos(db).update(
+                evento.toContentValues(),
+                "${BaseColumns._ID}=?",
+                arrayOf("${evento.id}"))
+
+        assertEquals(1,registosAlterados)
+
+        db.close()
+    }
+
 }
