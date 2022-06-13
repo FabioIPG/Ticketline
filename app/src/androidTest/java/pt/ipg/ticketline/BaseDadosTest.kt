@@ -293,4 +293,120 @@ class BaseDadosTest {
         db.close()
     }
 
+    @Test
+    fun  consegueEliminarPromotor() {
+        val db = getWritableDatabase()
+
+        val promotor = ClassPromotor("Teste")
+        inserePromotor(db, promotor)
+
+        val registosEliminados = TabelaBDPromotor(db).delete(
+               "${BaseColumns._ID}=?",
+        arrayOf("${promotor.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+    @Test
+    fun  consegueEliminarCategoria() {
+        val db = getWritableDatabase()
+
+        val categoria = ClassCategoria("Teste")
+        insereCategoria(db, categoria)
+
+        val registosEliminados = TabelaBDCategoria(db).delete(
+                "${BaseColumns._ID}=?",
+                arrayOf("${categoria.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+    @Test
+    fun  consegueEliminarTipoRecinto() {
+        val db = getWritableDatabase()
+
+        val tipoRecinto = ClassTipoRecinto("Teste")
+        insereTipoRecinto(db, tipoRecinto)
+
+        val registosEliminados = TabelaBDTipoRecinto(db).delete(
+                "${BaseColumns._ID}=?",
+                arrayOf("${tipoRecinto.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+    @Test
+    fun  consegueEliminarArtista() {
+        val db = getWritableDatabase()
+
+        val categoria = ClassCategoria("Rock")
+        insereCategoria(db, categoria)
+
+        val artista = ClassArtista("Teste","Teste", "Teste","925654854", categoria.id)
+        insereArtista(db, artista)
+
+        val registosEliminados = TabelaBDArtistas(db).delete(
+                "${BaseColumns._ID}=?",
+                arrayOf("${artista.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+    @Test
+    fun  consegueEliminarLocal() {
+        val db = getWritableDatabase()
+
+        val tipoRecinto = ClassTipoRecinto("Relvado")
+        insereTipoRecinto(db, tipoRecinto)
+
+        val local = ClassLocal("Teste","Teste", "Teste","9256", tipoRecinto.id)
+        insereLocal(db, local)
+
+        val registosEliminados = TabelaBDLocais(db).delete(
+                "${BaseColumns._ID}=?",
+                arrayOf("${local.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+    @Test
+    fun  consegueEliminarEvento() {
+        val db = getWritableDatabase()
+        val promotor = ClassPromotor("Teste")
+        inserePromotor(db, promotor)
+
+        val tipoRecinto = ClassTipoRecinto("Teste")
+        insereTipoRecinto(db, tipoRecinto)
+
+        val categoria = ClassCategoria("Teste")
+        insereCategoria(db, categoria)
+
+        val artista = ClassArtista("Teste","Teste","Teste","951265245",categoria.id)
+        insereTipoRecinto(db, tipoRecinto)
+
+        val local = ClassLocal("Teste","Teste","Teste","3515", tipoRecinto.id)
+        insereLocal(db, local)
+
+        val evento = ClassEvento("Teste","Teste",artista.id,local.id,promotor.id)
+        insereEvento(db, evento)
+
+        val registosEliminados = TabelaBDEventos(db).delete(
+                "${BaseColumns._ID}=?",
+                arrayOf("${evento.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
 }
