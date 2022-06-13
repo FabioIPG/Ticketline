@@ -1,6 +1,8 @@
 package pt.ipg.ticketline
 
 import android.content.ContentValues
+import android.database.Cursor
+import android.provider.BaseColumns
 
 data class ClassLocal(
         var nome_local: String,
@@ -23,6 +25,26 @@ data class ClassLocal(
 
 
         return valores
+    }
+
+    companion object {
+        fun fromCursor(cursor: Cursor): ClassLocal {
+            val posId = cursor.getColumnIndex(BaseColumns._ID)
+            val posNome = cursor.getColumnIndex(TabelaBDLocais.CAMPO_NOME_LOCAL)
+            val posLocalizacao = cursor.getColumnIndex(TabelaBDLocais.CAMPO_LOCALIZACAO)
+            val posEndereco = cursor.getColumnIndex(TabelaBDLocais.CAMPO_ENDRECO)
+            val posCapacidade = cursor.getColumnIndex(TabelaBDLocais.CAMPO_CAPACIDADE)
+            val posIdTipoRecinto = cursor.getColumnIndex(TabelaBDLocais.CAMPO_TIPO_RECINTO_ID)
+
+            val id = cursor.getLong(posId)
+            val nome = cursor.getString(posNome)
+            val localizacao = cursor.getString(posLocalizacao)
+            val endereco = cursor.getString(posEndereco)
+            val capacidade = cursor.getString(posCapacidade)
+            val idTipoRecinto = cursor.getLong(posIdTipoRecinto)
+
+            return ClassLocal(nome,localizacao,endereco,capacidade,idTipoRecinto,id)
+        }
     }
 }
 
