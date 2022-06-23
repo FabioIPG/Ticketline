@@ -209,4 +209,60 @@ class ContentProviderEventos : ContentProvider() {
     ): Int {
         TODO("Not yet implemented")
     }
+
+    companion object {
+        const val  AUTHORITY = "pt.ipg.ticketline"
+
+        const val URI_CATEGORIAS = 100
+        const val URI_CATEGORIA_ESPECIFICA = 101
+
+        const val URI_NACIONALIDADES = 200
+        const val URI_NACIONALIDADE_ESPECIFICA = 201
+
+        const val URI_ARTISTAS = 300
+        const val URI_ARTISRA_ESPECIFICO = 301
+
+        const val URI_LOCAIS = 400
+        const val URI_LOCAL_ESPECIFICO = 401
+
+        const val URI_TIPO_RECINTOS = 500
+        const val URI_TIPO_RECINTO_ESPECIFICO = 501
+
+        const val URI_PROMOTORES = 600
+        const val URI_PROMOTORES_ESPECIFICO = 601
+
+        const val URI_EVENTO = 700
+        const val URI_EVENTOS_ESPECIFICO = 701
+
+        const val UNICO_REGISTO = "vnd.android.cursor.item"
+        const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
+
+        fun getUriMatcher() : UriMatcher {
+            var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDCategoria.NOME, URI_CATEGORIAS)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDCategoria.NOME}/#", URI_CATEGORIA_ESPECIFICA)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDNacionalidade.NOME, URI_NACIONALIDADES)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDNacionalidade.NOME}/#", URI_NACIONALIDADE_ESPECIFICA)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDArtistas.NOME, URI_ARTISTAS)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDArtistas.NOME}/#", URI_ARTISRA_ESPECIFICO)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDLocais.NOME, URI_LOCAIS)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDLocais.NOME}/#", URI_LOCAL_ESPECIFICO)
+
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDTipoRecinto.NOME, URI_TIPO_RECINTOS)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDTipoRecinto.NOME}/#", URI_TIPO_RECINTO_ESPECIFICO)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDArtistas.NOME, URI_PROMOTORES)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDArtistas.NOME}/#", URI_PROMOTORES_ESPECIFICO)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDLocais.NOME, URI_EVENTO)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDLocais.NOME}/#", URI_EVENTOS_ESPECIFICO)
+
+            return uriMatcher
+        }
+    }
 }
