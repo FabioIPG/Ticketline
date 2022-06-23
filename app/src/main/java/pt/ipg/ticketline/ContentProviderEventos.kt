@@ -117,7 +117,39 @@ class ContentProviderEventos : ContentProvider() {
         selectionArgs: Array<out String>?,
         sortOrder: String?
     ): Cursor? {
-        TODO("Not yet implemented")
+        val db = dbOpenHelper!!.readableDatabase
+
+        requireNotNull(projection)
+        val colunas = projection as Array<String>
+
+        val argsSeleccao = selectionArgs as Array<String>?
+
+        val id = uri.lastPathSegment
+
+        val cursor = when (getUriMatcher().match(uri)) {
+
+            URI_CATEGORIAS -> TabelaBDCategoria(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_NACIONALIDADES -> TabelaBDNacionalidade(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_ARTISTAS -> TabelaBDArtistas(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_LOCAIS -> TabelaBDLocais(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_TIPO_RECINTOS -> TabelaBDTipoRecinto(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_PROMOTORES -> TabelaBDPromotor(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+            URI_EVENTO -> TabelaBDEventos(db).query(colunas, selection, argsSeleccao, null, null, sortOrder)
+
+            URI_CATEGORIA_ESPECIFICA -> TabelaBDCategoria(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_NACIONALIDADE_ESPECIFICA -> TabelaBDNacionalidade(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_ARTISRA_ESPECIFICO -> TabelaBDArtistas(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_LOCAL_ESPECIFICO -> TabelaBDLocais(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_TIPO_RECINTO_ESPECIFICO -> TabelaBDTipoRecinto(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_PROMOTORES_ESPECIFICO -> TabelaBDPromotor(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+            URI_EVENTOS_ESPECIFICO -> TabelaBDEventos(db).query(colunas, "${BaseColumns._ID}=?", arrayOf("${id}"), null, null, null)
+
+            else -> null
+        }
+
+        db.close()
+
+        return cursor
     }
 
     /**
