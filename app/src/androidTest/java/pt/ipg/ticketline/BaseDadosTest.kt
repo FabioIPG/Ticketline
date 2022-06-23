@@ -167,7 +167,7 @@ class BaseDadosTest {
 
         val registosAlterados = TabelaBDCategoria(db).update(
             categoria.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaBDCategoria.CAMPO_ID}=?",
             arrayOf("${categoria.id}"))
 
         assertEquals(1,registosAlterados)
@@ -186,7 +186,7 @@ class BaseDadosTest {
 
         val registosAlterados = TabelaBDNacionalidade(db).update(
             nacionalidade.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaBDNacionalidade.CAMPO_ID}=?",
             arrayOf("${nacionalidade.id}"))
 
         assertEquals(1,registosAlterados)
@@ -210,7 +210,7 @@ class BaseDadosTest {
 
         val registosAlterados = TabelaBDArtistas(db).update(
             artista.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaBDArtistas.CAMPO_ID}=?",
             arrayOf("${artista.id}"))
 
         assertEquals(1,registosAlterados)
@@ -232,7 +232,7 @@ class BaseDadosTest {
 
         val registosAlterados = TabelaBDLocais(db).update(
             local.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaBDLocais.CAMPO_ID}=?",
             arrayOf("${local.id}"))
 
         assertEquals(1,registosAlterados)
@@ -255,7 +255,7 @@ class BaseDadosTest {
 
         val registosAlterados = TabelaBDTipoRecinto(db).update(
             tipoRecinto.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaBDTipoRecinto.CAMPO_ID}=?",
             arrayOf("${tipoRecinto.id}"))
 
         assertEquals(1,registosAlterados)
@@ -274,7 +274,7 @@ class BaseDadosTest {
 
         val registosAlterados = TabelaBDPromotor(db).update(
             promotor.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaBDPromotor.CAMPO_ID}=?",
             arrayOf("${promotor.id}"))
 
         assertEquals(1,registosAlterados)
@@ -299,7 +299,7 @@ class BaseDadosTest {
 
         val registosAlterados = TabelaBDEventos(db).update(
             evento.toContentValues(),
-            "${BaseColumns._ID}=?",
+            "${TabelaBDEventos.CAMPO_ID}=?",
             arrayOf("${evento.id}"))
 
         assertEquals(1,registosAlterados)
@@ -315,7 +315,7 @@ class BaseDadosTest {
         insereCategoria(db, categoria)
 
         val registosEliminados = TabelaBDCategoria(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDCategoria.CAMPO_ID}=?",
             arrayOf("${categoria.id}"))
 
         assertEquals(1, registosEliminados)
@@ -332,7 +332,7 @@ class BaseDadosTest {
         insereNacionalidade(db, nacionalidade)
 
         val registosEliminados = TabelaBDNacionalidade(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDNacionalidade.CAMPO_ID}=?",
             arrayOf("${nacionalidade.id}"))
 
         assertEquals(1, registosEliminados)
@@ -351,7 +351,7 @@ class BaseDadosTest {
         insereArtista(db, artista)
 
         val registosEliminados = TabelaBDArtistas(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDArtistas.CAMPO_ID}=?",
             arrayOf("${artista.id}"))
 
         assertEquals(1, registosEliminados)
@@ -367,7 +367,7 @@ class BaseDadosTest {
         insereLocal(db, local)
 
         val registosEliminados = TabelaBDLocais(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDLocais.CAMPO_ID}=?",
             arrayOf("${local.id}"))
 
         assertEquals(1, registosEliminados)
@@ -386,7 +386,7 @@ class BaseDadosTest {
         insereTipoRecinto(db, tipoRecinto)
 
         val registosEliminados = TabelaBDTipoRecinto(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDTipoRecinto.CAMPO_ID}=?",
             arrayOf("${tipoRecinto.id}"))
 
         assertEquals(1, registosEliminados)
@@ -402,7 +402,7 @@ class BaseDadosTest {
         inserePromotor(db, promotor)
 
         val registosEliminados = TabelaBDPromotor(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDPromotor.CAMPO_ID}=?",
             arrayOf("${promotor.id}"))
 
         assertEquals(1, registosEliminados)
@@ -421,7 +421,7 @@ class BaseDadosTest {
         insereEvento(db, evento)
 
         val registosEliminados = TabelaBDEventos(db).delete(
-            "${BaseColumns._ID}=?",
+            "${TabelaBDEventos.CAMPO_ID}=?",
             arrayOf("${evento.id}"))
 
         assertEquals(1, registosEliminados)
@@ -438,7 +438,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDCategoria(db).query(
             TabelaBDCategoria.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDCategoria.CAMPO_ID}=?",
             arrayOf("${categoria.id}"),
             null,
             null,
@@ -464,7 +464,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDNacionalidade(db).query(
             TabelaBDNacionalidade.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDNacionalidade.CAMPO_NACIONALIDADE}=?",
             arrayOf("${nacionalidade.id}"),
             null,
             null,
@@ -493,7 +493,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDArtistas(db).query(
             TabelaBDArtistas.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDArtistas.CAMPO_ID}=?",
             arrayOf("${artista.id}"),
             null,
             null,
@@ -519,7 +519,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDLocais(db).query(
             TabelaBDLocais.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDLocais.CAMPO_ID}=?",
             arrayOf("${local.id}"),
             null,
             null,
@@ -548,7 +548,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDTipoRecinto(db).query(
             TabelaBDTipoRecinto.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDTipoRecinto.CAMPO_ID}=?",
             arrayOf("${tipoRecinto.id}"),
             null,
             null,
@@ -574,7 +574,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDPromotor(db).query(
             TabelaBDPromotor.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDPromotor.CAMPO_ID}=?",
             arrayOf("${promotor.id}"),
             null,
             null,
@@ -603,7 +603,7 @@ class BaseDadosTest {
 
         val cursor = TabelaBDEventos(db).query(
             TabelaBDEventos.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
+            "${TabelaBDEventos.CAMPO_ID}=?",
             arrayOf("${evento.id}"),
             null,
             null,

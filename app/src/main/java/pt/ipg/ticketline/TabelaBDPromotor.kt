@@ -11,8 +11,9 @@ class TabelaBDPromotor (db: SQLiteDatabase) : TabelaBD(db, NOME) {
 
     companion object {
         const val NOME = "promotor"
+        const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
         const val CAMPO_NOME_PROMOTOR = "nome_promotor"
 
-        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_NOME_PROMOTOR)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME_PROMOTOR)
     }
 }

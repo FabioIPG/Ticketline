@@ -13,14 +13,16 @@ class TabelaBDLocais(db: SQLiteDatabase) : TabelaBD(db, NOME) {
                 "$CAMPO_CAPACIDADE TEXT NOT NULL)")
     }
 
+
     companion object {
         const val NOME = "locais"
+        const val CAMPO_ID = "$NOME.${BaseColumns._ID}"
         const val CAMPO_NOME_LOCAL = "nome_local"
         const val CAMPO_LOCALIZACAO = "localizacao"
         const val CAMPO_ENDRECO = "endereço"
         const val CAMPO_CAPACIDADE = "capacidade"
 
-        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_NOME_LOCAL, CAMPO_LOCALIZACAO, CAMPO_ENDRECO, CAMPO_CAPACIDADE)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME_LOCAL, CAMPO_LOCALIZACAO, CAMPO_ENDRECO, CAMPO_CAPACIDADE)
 
     }
 
