@@ -351,6 +351,16 @@ class ContentProviderEventos : ContentProvider() {
         const val UNICO_REGISTO = "vnd.android.cursor.item"
         const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
 
+        private val ENDERECO_BASE = Uri.parse("content://$AUTHORITY")
+        val ENDERECO_EVENTOS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDEventos.NOME)
+        val ENDERECO_CATEGORIAS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDCategoria.NOME)
+        val ENDERECO_NACIONALIDADES = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDNacionalidade.NOME)
+        val ENDERECO_ARTISTAS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDArtistas.NOME)
+        val ENDERECO_LOCAIS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDLocais.NOME)
+        val ENDERECO_TIPO_RECINTOS = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDTipoRecinto.NOME)
+        val ENDERECO_PROMOTORES = Uri.withAppendedPath(ENDERECO_BASE, TabelaBDPromotor.NOME)
+
+
         fun getUriMatcher() : UriMatcher {
             var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 
