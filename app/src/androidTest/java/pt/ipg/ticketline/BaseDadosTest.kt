@@ -21,6 +21,7 @@ class BaseDadosTest {
     private fun appContext() =
             InstrumentationRegistry.getInstrumentation().targetContext
 
+
     private fun getWritableDatabase(): SQLiteDatabase {
         val openHelper = BDEventoOpenHelper(appContext())
         return openHelper.writableDatabase
@@ -31,14 +32,9 @@ class BaseDadosTest {
         assertNotEquals(-1, categoria.id)
     }
 
-    private fun  inserePromotor(db: SQLiteDatabase, promotor: ClassPromotor) {
-        promotor.id = TabelaBDPromotor(db).insert(promotor.toContentValues())
-        assertNotEquals(-1, promotor.id)
-    }
-
-    private fun  insereTipoRecinto(db: SQLiteDatabase, tipoRecinto: ClassTipoRecinto) {
-        tipoRecinto.id = TabelaBDTipoRecinto(db).insert(tipoRecinto.toContentValues())
-        assertNotEquals(-1, tipoRecinto.id)
+    private fun  insereNacionalidade(db: SQLiteDatabase, nacionalidade: ClassNacionalidade) {
+        nacionalidade.id = TabelaBDNacionalidade(db).insert(nacionalidade.toContentValues())
+        assertNotEquals(-1, nacionalidade.id)
     }
 
     private fun  insereArtista(db: SQLiteDatabase, artista: ClassArtista) {
@@ -49,6 +45,16 @@ class BaseDadosTest {
     private fun  insereLocal(db: SQLiteDatabase, local: ClassLocal) {
         local.id = TabelaBDLocais(db).insert(local.toContentValues())
         assertNotEquals(-1, local.id)
+    }
+
+    private fun  insereTipoRecinto(db: SQLiteDatabase, tipoRecinto: ClassTipoRecinto) {
+        tipoRecinto.id = TabelaBDTipoRecinto(db).insert(tipoRecinto.toContentValues())
+        assertNotEquals(-1, tipoRecinto.id)
+    }
+
+    private fun  inserePromotor(db: SQLiteDatabase, promotor: ClassPromotor) {
+        promotor.id = TabelaBDPromotor(db).insert(promotor.toContentValues())
+        assertNotEquals(-1, promotor.id)
     }
 
     private fun  insereEvento(db: SQLiteDatabase, evento: ClassEvento) {
@@ -71,11 +77,59 @@ class BaseDadosTest {
         db.close()
     }
 
+
+    @Test
+    fun consegueInserirCategoria() {
+        val db = getWritableDatabase()
+
+        insereCategoria(db, ClassCategoria("Pop"))
+        db.close()
+    }
+
+    @Test
+    fun consegueInserirNacionalidade() {
+        val db = getWritableDatabase()
+
+        insereNacionalidade(db, ClassNacionalidade("Portuguesa"))
+        db.close()
+    }
+
+    @Test
+    fun  consegueInserirArtista(){
+        val db = getWritableDatabase()
+
+        val nacionalidade = ClassNacionalidade("Brasileira")
+        insereNacionalidade(db, nacionalidade)
+
+        val artista = ClassArtista("Diogo Piçarra","Faro","936464297", nacionalidade.id)
+        artista.id = TabelaBDArtistas(db).insert(artista.toContentValues())
+
+        assertNotEquals(-1, artista.id)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueInserirLocal() {
+        val db = getWritableDatabase()
+
+        insereLocal(db, ClassLocal("Multiusos De Guimarães","Guimarães, Braga","Alameda Cidade de Lisboa 481, Guimarães","7000"))
+        db.close()
+
+    }
+
     @Test
     fun consegueInserirTipoRecinto() {
         val db = getWritableDatabase()
 
-        insereTipoRecinto(db, ClassTipoRecinto("Campo"))
+        val local = ClassLocal("Teste","Teste","Teste","9999")
+        insereLocal(db, local)
+
+        val tipoRecinto = ClassTipoRecinto("Teste", local.id)
+        tipoRecinto.id = TabelaBDTipoRecinto(db).insert(tipoRecinto.toContentValues())
+
+        assertNotEquals(-1, tipoRecinto.id)
+
         db.close()
     }
 
@@ -88,64 +142,16 @@ class BaseDadosTest {
     }
 
     @Test
-    fun consegueInserirLocal() {
-        val db = getWritableDatabase()
-
-        val tipoRecinto = ClassTipoRecinto("Pavilhão")
-        insereTipoRecinto(db, tipoRecinto)
-
-        val local = ClassLocal("Multiusos De Guimarães","Guimarães, Braga","Alameda Cidade de Lisboa 481, Guimarães","7000",tipoRecinto.id)
-        local.id = TabelaBDLocais(db).insert(local.toContentValues())
-
-        assertNotEquals(-1, local.id)
-
-        db.close()
-    }
-
-    @Test
     fun consegueInserirEvento() {
         val db = getWritableDatabase()
 
-        val categoria = ClassCategoria("Sertanejo")
-        insereCategoria(db, categoria)
-
-        val artista = ClassArtista("Luan Santana", "Campo Grande, MS","Brasileiro","938746865",categoria.id)
-        insereArtista(db, artista)
-
-        val tipoRecinto = ClassTipoRecinto("Pavilhão Sem Cobertura")
-        insereTipoRecinto(db, tipoRecinto)
-
-        val local = ClassLocal("Pavilhão Rosa Mota","Porto","Jardins do Palácio de Cristal, R. de Dom Manuel II, 4050-346 Porto","8500", tipoRecinto.id)
+        val local = ClassLocal("Teste2","Teste2","Teste2","8888")
         insereLocal(db, local)
 
-        val promotor = ClassPromotor("VIBES & BEATS - UNIP.LDA")
-        inserePromotor(db, promotor)
+        val evento = ClassEvento("DIOGOPIÇARRA",21062022, local.id)
+        evento.id = TabelaBDEventos(db).insert(evento.toContentValues())
 
-        val evento = ClassEvento("DIOGOPIÇARRA","08-08-2022", artista.id, local.id, promotor.id)
-        insereEvento(db, evento)
-
-        db.close()
-    }
-
-    @Test
-    fun consegueInserirCategoria() {
-        val db = getWritableDatabase()
-
-        insereCategoria(db, ClassCategoria("Pop"))
-        db.close()
-    }
-
-    @Test
-    fun  consegueInserirArtista(){
-        val db = getWritableDatabase()
-
-        val categoria = ClassCategoria("Pop Rock")
-        insereCategoria(db, categoria)
-
-        val artista = ClassArtista("Diogo Piçarra","Faro","Português","936464297", categoria.id)
-        artista.id = TabelaBDArtistas(db).insert(artista.toContentValues())
-
-        assertNotEquals(-1, artista.id)
+        assertNotEquals(-1, evento.id)
 
         db.close()
     }
@@ -157,12 +163,31 @@ class BaseDadosTest {
         val categoria = ClassCategoria("Teste")
         insereCategoria(db, categoria)
 
-        categoria.nome_categoria = "Pop"
+        categoria.nome_categoria = "Pop Rock"
 
         val registosAlterados = TabelaBDCategoria(db).update(
-                categoria.toContentValues(),
-                "${BaseColumns._ID}=?",
-                arrayOf("${categoria.id}"))
+            categoria.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${categoria.id}"))
+
+        assertEquals(1,registosAlterados)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueAlterarNacionalidade() {
+        val db = getWritableDatabase()
+
+        val nacionalidade = ClassNacionalidade("Teste")
+        insereNacionalidade(db, nacionalidade)
+
+        nacionalidade.nacionalidade = "Espanhol"
+
+        val registosAlterados = TabelaBDNacionalidade(db).update(
+            nacionalidade.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${nacionalidade.id}"))
 
         assertEquals(1,registosAlterados)
 
@@ -172,22 +197,21 @@ class BaseDadosTest {
     @Test
     fun consegueAlterarArtista() {
         val db = getWritableDatabase()
-        val categoria = ClassCategoria("TesteCat")
-        insereCategoria(db, categoria)
+        val nacionalidade = ClassNacionalidade("Teste2")
+        insereNacionalidade(db, nacionalidade)
 
-        val artista = ClassArtista("teste","teste","teste","935666458",categoria.id)
+        val artista = ClassArtista("teste2","teste2","teste2",nacionalidade.id)
         insereArtista(db, artista)
 
         artista.nome_do_artista = "Billie Eilish"
-        artista.endereço = " Los Angeles, Califórnia, EUA"
-        artista.nacionalidade = "Estadunidense"
+        artista.endereco = " Los Angeles, Califórnia, EUA"
         artista.telemovel = "933516760"
-        artista.categoria_id = categoria.id
+        artista.nacionalidade_id = nacionalidade.id
 
         val registosAlterados = TabelaBDArtistas(db).update(
-                artista.toContentValues(),
-                "${BaseColumns._ID}=?",
-                arrayOf("${categoria.id}"))
+            artista.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${artista.id}"))
 
         assertEquals(1,registosAlterados)
 
@@ -195,18 +219,21 @@ class BaseDadosTest {
     }
 
     @Test
-    fun consegueAlterarPromotor() {
+    fun consegueAlterarLocal() {
         val db = getWritableDatabase()
 
-        val promotor = ClassPromotor("Teste")
-        inserePromotor(db, promotor)
+        val local = ClassLocal("teste3","teste3","teste3","teste3")
+        insereLocal(db, local)
 
-        promotor.nome_promotor = "KILT"
+        local.nome_local = "Centro Cultural Gil Vicente"
+        local.localizacao = " Sardoal"
+        local.endereço = "Rua Dom João III, 2230-135 Sardoal"
+        local.capacidade = "760"
 
-        val registosAlterados = TabelaBDPromotor(db).update(
-                promotor.toContentValues(),
-                "${BaseColumns._ID}=?",
-                arrayOf("${promotor.id}"))
+        val registosAlterados = TabelaBDLocais(db).update(
+            local.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${local.id}"))
 
         assertEquals(1,registosAlterados)
 
@@ -217,15 +244,19 @@ class BaseDadosTest {
     fun consegueAlterarTipoRecinto() {
         val db = getWritableDatabase()
 
-        val tipoRecinto = ClassTipoRecinto("Teste")
+        val local = ClassLocal("teste4","teste4","teste4","teste4")
+        insereLocal(db, local)
+
+        val tipoRecinto = ClassTipoRecinto("Teste2",local.id)
         insereTipoRecinto(db, tipoRecinto)
 
         tipoRecinto.nome_tipo_recinto = "relvado"
+        tipoRecinto.locaisId = local.id
 
         val registosAlterados = TabelaBDTipoRecinto(db).update(
-                tipoRecinto.toContentValues(),
-                "${BaseColumns._ID}=?",
-                arrayOf("${tipoRecinto.id}"))
+            tipoRecinto.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${tipoRecinto.id}"))
 
         assertEquals(1,registosAlterados)
 
@@ -233,78 +264,45 @@ class BaseDadosTest {
     }
 
     @Test
-    fun consegueAlterarLocal() {
+    fun consegueAlterarPromotor() {
         val db = getWritableDatabase()
-        val tipoRecinto = ClassTipoRecinto("Teste")
-        insereTipoRecinto(db, tipoRecinto)
 
-        val local = ClassLocal("teste","teste","teste","9356",tipoRecinto.id)
-        insereLocal(db, local)
+        val promotor = ClassPromotor("Teste2")
+        inserePromotor(db, promotor)
 
-        local.nome_local = "Centro Cultural Gil Vicente"
-        local.localizacao = " Sardoal"
-        local.endereço = "Rua Dom João III, 2230-135 Sardoal"
-        local.capacidade = "760"
-        local.tipo_recinto_id = tipoRecinto.id
+        promotor.nome_promotor = "KILT"
 
-        val registosAlterados = TabelaBDLocais(db).update(
-                local.toContentValues(),
-                "${BaseColumns._ID}=?",
-                arrayOf("${local.id}"))
+        val registosAlterados = TabelaBDPromotor(db).update(
+            promotor.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${promotor.id}"))
 
         assertEquals(1,registosAlterados)
 
         db.close()
     }
 
+    @Test
     fun consegueAlterarEvento() {
         val db = getWritableDatabase()
-        val promotor = ClassPromotor("Teste")
-        inserePromotor(db, promotor)
 
-        val tipoRecinto = ClassTipoRecinto("Teste")
-        insereTipoRecinto(db, tipoRecinto)
 
-        val categoria = ClassCategoria("Teste")
-        insereCategoria(db, categoria)
-
-        val artista = ClassArtista("Teste","Teste","Teste","951265245",categoria.id)
-        insereTipoRecinto(db, tipoRecinto)
-
-        val local = ClassLocal("Teste","Teste","Teste","3515", tipoRecinto.id)
+        val local = ClassLocal("teste5","teste5","teste5","teste5")
         insereLocal(db, local)
 
-        val evento = ClassEvento("Teste","Teste",artista.id,local.id,promotor.id)
+        val evento = ClassEvento("Teste",22062022,local.id)
         insereEvento(db, evento)
 
         evento.nome_evento = "Processo"
-        evento.data = "18-11-2022"
-        evento.artista_id = artista.id
+        evento.data = 23062022
         evento.local_id = local.id
-        evento.promotor_id = promotor.id
 
         val registosAlterados = TabelaBDEventos(db).update(
-                evento.toContentValues(),
-                "${BaseColumns._ID}=?",
-                arrayOf("${evento.id}"))
+            evento.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${evento.id}"))
 
         assertEquals(1,registosAlterados)
-
-        db.close()
-    }
-
-    @Test
-    fun  consegueEliminarPromotor() {
-        val db = getWritableDatabase()
-
-        val promotor = ClassPromotor("Teste")
-        inserePromotor(db, promotor)
-
-        val registosEliminados = TabelaBDPromotor(db).delete(
-               "${BaseColumns._ID}=?",
-        arrayOf("${promotor.id}"))
-
-        assertEquals(1, registosEliminados)
 
         db.close()
     }
@@ -313,28 +311,29 @@ class BaseDadosTest {
     fun  consegueEliminarCategoria() {
         val db = getWritableDatabase()
 
-        val categoria = ClassCategoria("Teste")
+        val categoria = ClassCategoria("Teste4")
         insereCategoria(db, categoria)
 
         val registosEliminados = TabelaBDCategoria(db).delete(
-                "${BaseColumns._ID}=?",
-                arrayOf("${categoria.id}"))
+            "${BaseColumns._ID}=?",
+            arrayOf("${categoria.id}"))
 
         assertEquals(1, registosEliminados)
 
         db.close()
     }
 
+
     @Test
-    fun  consegueEliminarTipoRecinto() {
+    fun  consegueEliminarNacionalidade() {
         val db = getWritableDatabase()
 
-        val tipoRecinto = ClassTipoRecinto("Teste")
-        insereTipoRecinto(db, tipoRecinto)
+        val nacionalidade = ClassNacionalidade("Teste4")
+        insereNacionalidade(db, nacionalidade)
 
-        val registosEliminados = TabelaBDTipoRecinto(db).delete(
-                "${BaseColumns._ID}=?",
-                arrayOf("${tipoRecinto.id}"))
+        val registosEliminados = TabelaBDNacionalidade(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${nacionalidade.id}"))
 
         assertEquals(1, registosEliminados)
 
@@ -345,15 +344,15 @@ class BaseDadosTest {
     fun  consegueEliminarArtista() {
         val db = getWritableDatabase()
 
-        val categoria = ClassCategoria("Rock")
-        insereCategoria(db, categoria)
+        val nacionalidade = ClassNacionalidade("Teste5")
+        insereNacionalidade(db, nacionalidade)
 
-        val artista = ClassArtista("Teste","Teste", "Teste","925654854", categoria.id)
+        val artista = ClassArtista("teste5","teste5","teste5",nacionalidade.id)
         insereArtista(db, artista)
 
         val registosEliminados = TabelaBDArtistas(db).delete(
-                "${BaseColumns._ID}=?",
-                arrayOf("${artista.id}"))
+            "${BaseColumns._ID}=?",
+            arrayOf("${artista.id}"))
 
         assertEquals(1, registosEliminados)
 
@@ -364,15 +363,47 @@ class BaseDadosTest {
     fun  consegueEliminarLocal() {
         val db = getWritableDatabase()
 
-        val tipoRecinto = ClassTipoRecinto("Relvado")
-        insereTipoRecinto(db, tipoRecinto)
-
-        val local = ClassLocal("Teste","Teste", "Teste","9256", tipoRecinto.id)
+        val local = ClassLocal("teste6","teste6","teste6","teste6")
         insereLocal(db, local)
 
         val registosEliminados = TabelaBDLocais(db).delete(
-                "${BaseColumns._ID}=?",
-                arrayOf("${local.id}"))
+            "${BaseColumns._ID}=?",
+            arrayOf("${local.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+    @Test
+    fun  consegueEliminarTipoRecinto() {
+        val db = getWritableDatabase()
+
+        val local = ClassLocal("teste6","teste6","teste6","teste6")
+        insereLocal(db, local)
+
+        val tipoRecinto = ClassTipoRecinto("Teste6",local.id)
+        insereTipoRecinto(db, tipoRecinto)
+
+        val registosEliminados = TabelaBDTipoRecinto(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${tipoRecinto.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+    @Test
+    fun  consegueEliminarPromotor() {
+        val db = getWritableDatabase()
+
+        val promotor = ClassPromotor("Teste7")
+        inserePromotor(db, promotor)
+
+        val registosEliminados = TabelaBDPromotor(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${promotor.id}"))
 
         assertEquals(1, registosEliminados)
 
@@ -382,81 +413,18 @@ class BaseDadosTest {
     @Test
     fun  consegueEliminarEvento() {
         val db = getWritableDatabase()
-        val promotor = ClassPromotor("Teste")
-        inserePromotor(db, promotor)
 
-        val tipoRecinto = ClassTipoRecinto("Teste")
-        insereTipoRecinto(db, tipoRecinto)
-
-        val categoria = ClassCategoria("Teste")
-        insereCategoria(db, categoria)
-
-        val artista = ClassArtista("Teste","Teste","Teste","951265245",categoria.id)
-        insereTipoRecinto(db, tipoRecinto)
-
-        val local = ClassLocal("Teste","Teste","Teste","3515", tipoRecinto.id)
+        val local = ClassLocal("teste7","teste7","teste7","teste7")
         insereLocal(db, local)
 
-        val evento = ClassEvento("Teste","Teste",artista.id,local.id,promotor.id)
+        val evento = ClassEvento("Teste7",23062022,local.id)
         insereEvento(db, evento)
 
         val registosEliminados = TabelaBDEventos(db).delete(
-                "${BaseColumns._ID}=?",
-                arrayOf("${evento.id}"))
+            "${BaseColumns._ID}=?",
+            arrayOf("${evento.id}"))
 
         assertEquals(1, registosEliminados)
-
-        db.close()
-    }
-
-    @Test
-    fun consegueLerPromotor() {
-        val db = getWritableDatabase()
-
-        val promotor = ClassPromotor("KFC")
-        inserePromotor(db, promotor)
-
-        val cursor = TabelaBDPromotor(db).query(
-                TabelaBDPromotor.TODAS_COLUNAS,
-                "${BaseColumns._ID}=?",
-                arrayOf("${promotor.id}"),
-                null,
-                null,
-                null
-        )
-
-        assertEquals(1, cursor.count)
-        assertTrue(cursor.moveToNext())
-
-        val promotorBD = ClassPromotor.fromCursor(cursor)
-
-        assertEquals(promotor, promotorBD)
-
-        db.close()
-    }
-
-    @Test
-    fun consegueLerTipoRecinto() {
-        val db = getWritableDatabase()
-
-        val tipoRecinto = ClassTipoRecinto("Terreno de terra batida")
-        insereTipoRecinto(db, tipoRecinto)
-
-        val cursor = TabelaBDTipoRecinto(db).query(
-                TabelaBDTipoRecinto.TODAS_COLUNAS,
-                "${BaseColumns._ID}=?",
-                arrayOf("${tipoRecinto.id}"),
-                null,
-                null,
-                null
-        )
-
-        assertEquals(1, cursor.count)
-        assertTrue(cursor.moveToNext())
-
-        val tipoRecintoBD = ClassTipoRecinto.fromCursor(cursor)
-
-        assertEquals(tipoRecinto, tipoRecintoBD)
 
         db.close()
     }
@@ -465,16 +433,16 @@ class BaseDadosTest {
     fun consegueLerCategoria() {
         val db = getWritableDatabase()
 
-        val categoria = ClassCategoria("Hip Hop")
+        val categoria = ClassCategoria("Teste8")
         insereCategoria(db, categoria)
 
         val cursor = TabelaBDCategoria(db).query(
-                TabelaBDCategoria.TODAS_COLUNAS,
-                "${BaseColumns._ID}=?",
-                arrayOf("${categoria.id}"),
-                null,
-                null,
-                null
+            TabelaBDCategoria.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${categoria.id}"),
+            null,
+            null,
+            null
         )
 
         assertEquals(1, cursor.count)
@@ -488,22 +456,48 @@ class BaseDadosTest {
     }
 
     @Test
+    fun consegueLerNacionalidade() {
+        val db = getWritableDatabase()
+
+        val nacionalidade = ClassNacionalidade("Teste8")
+        insereNacionalidade(db, nacionalidade)
+
+        val cursor = TabelaBDNacionalidade(db).query(
+            TabelaBDNacionalidade.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${nacionalidade.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val nacionalidadeBD = ClassNacionalidade.fromCursor(cursor)
+
+        assertEquals(nacionalidade, nacionalidadeBD)
+
+        db.close()
+    }
+
+    @Test
     fun consegueLerArtista() {
         val db = getWritableDatabase()
 
-        val categoria = ClassCategoria("Hip Hop")
-        insereCategoria(db, categoria)
+        val nacionalidade = ClassNacionalidade("Teste9")
+        insereNacionalidade(db, nacionalidade)
 
-        val artista = ClassArtista("Bruno Mars", "Honolulu, Hawaii, United States", "Americano","928625184", categoria.id)
+        val artista = ClassArtista("teste9","teste9","teste9",nacionalidade.id)
         insereArtista(db, artista)
 
         val cursor = TabelaBDArtistas(db).query(
-                TabelaBDArtistas.TODAS_COLUNAS,
-                "${BaseColumns._ID}=?",
-                arrayOf("${artista.id}"),
-                null,
-                null,
-                null
+            TabelaBDArtistas.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${artista.id}"),
+            null,
+            null,
+            null
         )
 
         assertEquals(1, cursor.count)
@@ -520,19 +514,16 @@ class BaseDadosTest {
     fun consegueLerLocal() {
         val db = getWritableDatabase()
 
-        val tipoRecinto = ClassTipoRecinto("Teatro")
-        insereTipoRecinto(db, tipoRecinto)
-
-        val local = ClassLocal("Teatro Municipal da Guarda", "Guarda", "Praça do Município 6300-854 Guarda","1184", tipoRecinto.id)
+        val local = ClassLocal("teste9","teste9","teste9","teste9")
         insereLocal(db, local)
 
         val cursor = TabelaBDLocais(db).query(
-                TabelaBDLocais.TODAS_COLUNAS,
-                "${BaseColumns._ID}=?",
-                arrayOf("${local.id}"),
-                null,
-                null,
-                null
+            TabelaBDLocais.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${local.id}"),
+            null,
+            null,
+            null
         )
 
         assertEquals(1, cursor.count)
@@ -546,33 +537,77 @@ class BaseDadosTest {
     }
 
     @Test
-    fun consegueLerEvento() {
+    fun consegueLerTipoRecinto() {
         val db = getWritableDatabase()
-        val promotor = ClassPromotor("Teste2")
-        inserePromotor(db, promotor)
 
-        val tipoRecinto = ClassTipoRecinto("Teste2")
-        insereTipoRecinto(db, tipoRecinto)
-
-        val categoria = ClassCategoria("Teste2")
-        insereCategoria(db, categoria)
-
-        val artista = ClassArtista("Teste2","Teste2","Teste2","951265257",categoria.id)
-        insereTipoRecinto(db, tipoRecinto)
-
-        val local = ClassLocal("Teste2","Teste2","Teste2","2152", tipoRecinto.id)
+        val local = ClassLocal("teste10","teste10","teste10","teste10")
         insereLocal(db, local)
 
-        val evento = ClassEvento("Teste2","Teste2",artista.id,local.id,promotor.id)
+        val tipoRecinto = ClassTipoRecinto("Teste10",local.id)
+        insereTipoRecinto(db, tipoRecinto)
+
+        val cursor = TabelaBDTipoRecinto(db).query(
+            TabelaBDTipoRecinto.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${tipoRecinto.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val tipoRecintoBD = ClassTipoRecinto.fromCursor(cursor)
+
+        assertEquals(tipoRecinto, tipoRecintoBD)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueLerPromotor() {
+        val db = getWritableDatabase()
+
+        val promotor = ClassPromotor("Teste11")
+        inserePromotor(db, promotor)
+
+        val cursor = TabelaBDPromotor(db).query(
+            TabelaBDPromotor.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${promotor.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val promotorBD = ClassPromotor.fromCursor(cursor)
+
+        assertEquals(promotor, promotorBD)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueLerEvento() {
+        val db = getWritableDatabase()
+
+        val local = ClassLocal("teste11","teste11","teste11","teste11")
+        insereLocal(db, local)
+
+        val evento = ClassEvento("Teste11",24062022,local.id)
         insereEvento(db, evento)
 
         val cursor = TabelaBDEventos(db).query(
-                TabelaBDEventos.TODAS_COLUNAS,
-                "${BaseColumns._ID}=?",
-                arrayOf("${evento.id}"),
-                null,
-                null,
-                null
+            TabelaBDEventos.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${evento.id}"),
+            null,
+            null,
+            null
         )
 
         assertEquals(1, cursor.count)

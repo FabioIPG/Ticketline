@@ -7,21 +7,17 @@ import android.provider.BaseColumns
 data class ClassArtista (
 
         var nome_do_artista: String,
-        var endereço: String,
-        var nacionalidade: String,
+        var endereco: String,
         var telemovel: String,
-        var categoria_id: Long,
-        var id: Long= -1
+        var nacionalidade_id: Long,
+        var id: Long= 1
 ) {
     fun toContentValues() : ContentValues {
         val valores = ContentValues()
         valores.put(TabelaBDArtistas.CAMPO_NOME_DO_ARTISTA, nome_do_artista)
-        valores.put(TabelaBDArtistas.CAMPO_ENDERECO, endereço)
-        valores.put(TabelaBDArtistas.CAMPO_NACIONALIDADE, nacionalidade)
-
-        valores.put(TabelaBDArtistas.CAMPO_CATEGORIA_ID, categoria_id)
-
+        valores.put(TabelaBDArtistas.CAMPO_ENDERECO, endereco)
         valores.put(TabelaBDArtistas.CAMPO_TELEMOVEL, telemovel)
+        valores.put(TabelaBDArtistas.CAMPO_NACIONALIDADE_ID, nacionalidade_id)
 
         return valores
     }
@@ -31,18 +27,17 @@ data class ClassArtista (
             val posId = cursor.getColumnIndex(BaseColumns._ID)
             val posNome = cursor.getColumnIndex(TabelaBDArtistas.CAMPO_NOME_DO_ARTISTA)
             val posEndereco = cursor.getColumnIndex(TabelaBDArtistas.CAMPO_ENDERECO)
-            val posNacionalidade = cursor.getColumnIndex(TabelaBDArtistas.CAMPO_NACIONALIDADE)
-            val posIdCateg = cursor.getColumnIndex(TabelaBDArtistas.CAMPO_CATEGORIA_ID)
             val posTelemovel = cursor.getColumnIndex(TabelaBDArtistas.CAMPO_TELEMOVEL)
+            val posIdNacionalidade = cursor.getColumnIndex(TabelaBDArtistas.CAMPO_NACIONALIDADE_ID)
 
             val id = cursor.getLong(posId)
             val nome = cursor.getString(posNome)
             val endereco = cursor.getString(posEndereco)
-            val nacionalidade = cursor.getString(posNacionalidade)
-            val idCategoria = cursor.getLong(posIdCateg)
             val telemovel = cursor.getString(posTelemovel)
+            val idNacionalidade = cursor.getLong(posIdNacionalidade)
 
-            return ClassArtista(nome,endereco,nacionalidade,telemovel,idCategoria,id)
+
+            return ClassArtista(nome,endereco,telemovel,idNacionalidade,id)
         }
     }
 

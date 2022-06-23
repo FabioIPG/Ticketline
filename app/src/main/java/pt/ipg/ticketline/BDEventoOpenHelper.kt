@@ -14,44 +14,53 @@ class BDEventoOpenHelper(context: Context?) : SQLiteOpenHelper(context, NOME, nu
         override fun onCreate(db: SQLiteDatabase?) {
 
             if (db != null) {
-                TabelaBDArtistas(db).cria()
-                TabelaBDCategoria(db).cria()
-                TabelaBDEventos(db).cria()
-                TabelaBDLocais(db).cria()
+
+                TabelaBDNacionalidade(db).cria()
                 TabelaBDPromotor(db).cria()
+                TabelaBDLocais(db).cria()
+                TabelaBDCategoria(db).cria()
+                TabelaBDArtistas(db).cria()
+                TabelaBDEventos(db).cria()
                 TabelaBDTipoRecinto(db).cria()
+
+                /*
+                TabelaBDPromotoresEventos(db).cria()
+                TabelaBDCategoriaArtistas(db).cria()
+                TabelaBDArtistasEventos(db).cria()
+
+                 */
 
             }
 
-        }
+}
 
-        /**
-         * Called when the database needs to be upgraded. The implementation
-         * should use this method to drop tables, add tables, or do anything else it
-         * needs to upgrade to the new schema version.
-         *
-         *
-         *
-         * The SQLite ALTER TABLE documentation can be found
-         * [here](http://sqlite.org/lang_altertable.html). If you add new columns
-         * you can use ALTER TABLE to insert them into a live table. If you rename or remove columns
-         * you can use ALTER TABLE to rename the old table, then create the new table and then
-         * populate the new table with the contents of the old table.
-         *
-         *
-         * This method executes within a transaction.  If an exception is thrown, all changes
-         * will automatically be rolled back.
-         *
-         *
-         * @param db The database.
-         * @param oldVersion The old database version.
-         * @param newVersion The new database version.
-         */
-        override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+/**
+* Called when the database needs to be upgraded. The implementation
+* should use this method to drop tables, add tables, or do anything else it
+* needs to upgrade to the new schema version.
+*
+*
+*
+* The SQLite ALTER TABLE documentation can be found
+* [here](http://sqlite.org/lang_altertable.html). If you add new columns
+* you can use ALTER TABLE to insert them into a live table. If you rename or remove columns
+* you can use ALTER TABLE to rename the old table, then create the new table and then
+* populate the new table with the contents of the old table.
+*
+*
+* This method executes within a transaction.  If an exception is thrown, all changes
+* will automatically be rolled back.
+*
+*
+* @param db The database.
+* @param oldVersion The old database version.
+* @param newVersion The new database version.
+*/
+override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
 
-        }
-        companion object {
-            const val NOME = "eventos.db"
-            private const val VERSAO = 1
-        }
-    }
+}
+companion object {
+const val NOME = "eventos.db"
+private const val VERSAO = 1
+}
+}

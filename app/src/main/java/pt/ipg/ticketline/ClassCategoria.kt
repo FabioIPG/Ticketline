@@ -6,7 +6,7 @@ import android.provider.BaseColumns
 
 data class ClassCategoria (
         var nome_categoria: String,
-        var id: Long= -1
+        var id: Long= 1
 ) {
     fun toContentValues() : ContentValues {
         val valores = ContentValues()

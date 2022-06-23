@@ -9,16 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ticketline">
+
         <activity
             android:name=".FragMainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Ticketline.NoActionBar">
+            android:theme="@style/Theme.Ticketline.NoActionBar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="pt.ipg.ticketline"
+            android:name=".ContentProviderEventos"
+            android:exported="false"/>
     </application>
 
 </manifest>
