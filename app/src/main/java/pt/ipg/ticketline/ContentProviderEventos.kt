@@ -300,7 +300,28 @@ class ContentProviderEventos : ContentProvider() {
         selection: String?,
         selectionArgs: Array<out String>?
     ): Int {
-        TODO("Not yet implemented")
+        requireNotNull(values)
+
+        val db = dbOpenHelper!!.writableDatabase
+
+        val id = uri.lastPathSegment
+
+        val registosAlterados = when (getUriMatcher().match(uri)) {
+
+            URI_CATEGORIAS -> TabelaBDCategoria(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_NACIONALIDADES -> TabelaBDNacionalidade(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_ARTISTAS -> TabelaBDArtistas(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_LOCAIS -> TabelaBDLocais(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_TIPO_RECINTOS -> TabelaBDTipoRecinto(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_PROMOTORES -> TabelaBDPromotor(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_EVENTO -> TabelaBDEventos(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+
+            else -> 0
+        }
+
+        db.close()
+
+        return registosAlterados
     }
 
     companion object {
