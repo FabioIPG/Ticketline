@@ -208,7 +208,28 @@ class ContentProviderEventos : ContentProvider() {
      * @return The URI for the newly inserted item.
      */
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        TODO("Not yet implemented")
+        val db = dbOpenHelper!!.writableDatabase
+
+        requireNotNull(values)
+
+        val id = when (getUriMatcher().match(uri)) {
+
+            URI_CATEGORIAS -> TabelaBDCategoria(db).insert(values)
+            URI_NACIONALIDADES -> TabelaBDNacionalidade(db).insert(values)
+            URI_ARTISTAS -> TabelaBDArtistas(db).insert(values)
+            URI_LOCAIS -> TabelaBDLocais(db).insert(values)
+            URI_TIPO_RECINTOS -> TabelaBDTipoRecinto(db).insert(values)
+            URI_PROMOTORES -> TabelaBDPromotor(db).insert(values)
+            URI_EVENTO -> TabelaBDEventos(db).insert(values)
+
+            else -> -1
+        }
+
+        db.close()
+
+        if (id == -1L) return null
+
+        return Uri.withAppendedPath(uri, "$id")
     }
 
     /**
