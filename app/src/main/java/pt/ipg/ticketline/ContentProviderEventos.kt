@@ -9,6 +9,7 @@ import android.net.Uri
 import android.provider.BaseColumns
 
 class ContentProviderEventos : ContentProvider() {
+    var dbOpenHelper : BDEventoOpenHelper? = null
     /**
      * Implement this to initialize your content provider on startup.
      * This method is called for all registered content providers on the
@@ -37,7 +38,9 @@ class ContentProviderEventos : ContentProvider() {
      * @return true if the provider was successfully loaded, false otherwise
      */
     override fun onCreate(): Boolean {
-        TODO("Not yet implemented")
+        dbOpenHelper = BDEventoOpenHelper(context)
+
+        return true
     }
 
     /**
