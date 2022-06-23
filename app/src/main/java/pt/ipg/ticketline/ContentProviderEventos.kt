@@ -256,7 +256,27 @@ class ContentProviderEventos : ContentProvider() {
      * @throws SQLException
      */
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        val db = dbOpenHelper!!.writableDatabase
+
+        val id = uri.lastPathSegment
+
+        val registosApagados = when (getUriMatcher().match(uri)) {
+
+
+            URI_CATEGORIAS -> TabelaBDCategoria(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_NACIONALIDADES -> TabelaBDNacionalidade(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_ARTISTAS -> TabelaBDArtistas(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_LOCAIS -> TabelaBDLocais(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_TIPO_RECINTOS -> TabelaBDTipoRecinto(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_PROMOTORES -> TabelaBDPromotor(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_EVENTO -> TabelaBDEventos(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+
+            else -> 0
+        }
+
+        db.close()
+
+        return registosApagados
     }
 
     /**
