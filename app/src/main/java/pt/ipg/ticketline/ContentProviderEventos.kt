@@ -139,8 +139,28 @@ class ContentProviderEventos : ContentProvider() {
      * @param uri the URI to query.
      * @return a MIME type string, or `null` if there is no type.
      */
-    override fun getType(uri: Uri): String? {
-        TODO("Not yet implemented")
+    override fun getType(uri: Uri): String? =
+
+        when (getUriMatcher().match(uri)) {
+
+
+            URI_CATEGORIAS -> "$MULTIPLOS_REGISTOS/${TabelaBDCategoria.NOME}"
+            URI_NACIONALIDADES -> "$MULTIPLOS_REGISTOS/${TabelaBDNacionalidade.NOME}"
+            URI_ARTISTAS -> "$MULTIPLOS_REGISTOS/${TabelaBDArtistas.NOME}"
+            URI_LOCAIS -> "$MULTIPLOS_REGISTOS/${TabelaBDLocais.NOME}"
+            URI_TIPO_RECINTOS -> "$MULTIPLOS_REGISTOS/${TabelaBDTipoRecinto.NOME}"
+            URI_PROMOTORES -> "$MULTIPLOS_REGISTOS/${TabelaBDPromotor.NOME}"
+            URI_EVENTO -> "$MULTIPLOS_REGISTOS/${TabelaBDEventos.NOME}"
+
+            URI_CATEGORIA_ESPECIFICA -> "$UNICO_REGISTO/${TabelaBDCategoria.NOME}"
+            URI_NACIONALIDADE_ESPECIFICA -> "$UNICO_REGISTO/${TabelaBDNacionalidade.NOME}"
+            URI_ARTISRA_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDArtistas.NOME}"
+            URI_LOCAL_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDLocais.NOME}"
+            URI_TIPO_RECINTO_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDTipoRecinto.NOME}"
+            URI_PROMOTORES_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDPromotor.NOME}"
+            URI_EVENTOS_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDEventos.NOME}"
+
+            else -> null
     }
 
     /**
