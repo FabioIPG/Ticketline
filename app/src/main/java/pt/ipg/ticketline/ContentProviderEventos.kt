@@ -147,8 +147,6 @@ class ContentProviderEventos : ContentProvider() {
             else -> null
         }
 
-        db.close()
-
         return cursor
     }
 
