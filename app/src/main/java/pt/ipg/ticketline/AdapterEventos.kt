@@ -17,22 +17,45 @@ class AdapterEventos(val fragment: ListaEventosFragment) : RecyclerView.Adapter<
             }
         }
 
-    class ViewHolderEvento(itemEvento: View) : RecyclerView.ViewHolder(itemEvento) {
+    inner class ViewHolderEvento(itemEvento: View) : RecyclerView.ViewHolder(itemEvento), View.OnClickListener {
         val textViewNome = itemEvento.findViewById<TextView>(R.id.textViewNome)
         val textViewData = itemEvento.findViewById<TextView>(R.id.textViewData)
         val textViewLocal = itemEvento.findViewById<TextView>(R.id.textViewLocal)
 
-        var evento : ClassEvento? = null
+        init {
+            itemEvento.setOnClickListener(this)
+        }
+
+        var evento: ClassEvento? = null
             get() = field
-            set(value: ClassEvento?) {
+            set(value) {
                 field = value
 
                 textViewNome.text = evento?.nome_evento ?: ""
                 textViewData.text = (evento?.data ?: "") as CharSequence?
-                textViewLocal.text = "${evento?.local_id}"
+                textViewLocal.text = evento?.local?.nome_local?: ""
             }
-    }
 
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        override fun onClick(v: View?) {
+            seleccionado?.desseleciona()
+            this.seleciona()
+        }
+
+        private fun seleciona() {
+            seleccionado = this
+            fragment.eventoSelecionado = evento
+            itemView.setBackgroundResource(android.R.color.holo_orange_light)
+        }
+
+        private fun desseleciona() {
+            itemView.setBackgroundResource(android.R.color.white)
+        }
+    }
     /**
      * Called when RecyclerView needs a new [ViewHolder] of the given type to represent
      * an item.
@@ -97,4 +120,9 @@ class AdapterEventos(val fragment: ListaEventosFragment) : RecyclerView.Adapter<
 
         return cursor!!.count
     }
+
+    companion object {
+        var seleccionado : ViewHolderEvento? = null
+    }
+
 }

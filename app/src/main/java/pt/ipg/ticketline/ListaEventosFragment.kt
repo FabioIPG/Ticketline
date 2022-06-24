@@ -18,6 +18,15 @@ import pt.ipg.ticketline.databinding.FragmentListaEventosBinding
  */
 class ListaEventosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
+    var eventoSelecionado: ClassEvento? = null
+        get() = field
+        set(value) {
+            if (value != field) {
+                field = value
+                (requireActivity() as MainActivity).atualizaOpcoesLista(field != null)
+            }
+        }
+
     private var _binding: FragmentListaEventosBinding? = null
     private var adapterEventos : AdapterEventos? = null
 

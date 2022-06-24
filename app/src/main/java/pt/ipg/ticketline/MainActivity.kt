@@ -11,10 +11,12 @@ import android.view.Menu
 import android.view.MenuItem
 import pt.ipg.ticketline.databinding.ActivityMainBinding
 
-class FragMainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+
+    private var menu: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,4 +52,10 @@ class FragMainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
+    fun atualizaOpcoesLista(mostraAlterarEliminar: Boolean) {
+        menu!!.findItem(R.id.action_alterar).setVisible(mostraAlterarEliminar)
+        menu!!.findItem(R.id.action_eliminar).setVisible(mostraAlterarEliminar)
+    }
+
 }

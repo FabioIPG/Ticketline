@@ -8,7 +8,7 @@ data class ClassEvento(
 
         var nome_evento: String,
         var data: Long,
-        var local_id: Long,
+        var local: ClassLocal,
         var id: Long = 1
 
 ) {
@@ -17,7 +17,7 @@ data class ClassEvento(
 
         valores.put(TabelaBDEventos.CAMPO_NOME_EVENTO,nome_evento )
         valores.put(TabelaBDEventos.CAMPO_DATA, data)
-        valores.put(TabelaBDEventos.CAMPO_LOCAL_ID, local_id)
+        valores.put(TabelaBDEventos.CAMPO_LOCAL_ID, local.id)
 
         return valores
     }
@@ -28,13 +28,24 @@ data class ClassEvento(
             val posNome = cursor.getColumnIndex(TabelaBDEventos.CAMPO_NOME_EVENTO)
             val posData = cursor.getColumnIndex(TabelaBDEventos.CAMPO_DATA)
             val posIdLocal = cursor.getColumnIndex(TabelaBDEventos.CAMPO_LOCAL_ID)
+            val posNomeLocal = cursor.getColumnIndex(TabelaBDLocais.CAMPO_NOME_LOCAL)
+
+            val posEndereco = cursor.getColumnIndex(TabelaBDLocais.CAMPO_ENDRECO)
+            val posCapacidade = cursor.getColumnIndex(TabelaBDLocais.CAMPO_CAPACIDADE)
 
             val id = cursor.getLong(posId)
             val nome = cursor.getString(posNome)
             val data = cursor.getLong(posData)
-            val idLocal = cursor.getLong(posIdLocal)
+            val idLocal = cursor.getString(posIdLocal)
+            val nomeLocal = cursor.getString(posNomeLocal)
 
-            return ClassEvento(nome,data,idLocal,id)
+
+            val endereco = cursor.getString(posEndereco)
+            val capacidade = cursor.getString(posCapacidade)
+
+            val local = ClassLocal(nomeLocal,idLocal,endereco,capacidade)
+
+            return ClassEvento(nome,data,local,id)
 
         }
     }

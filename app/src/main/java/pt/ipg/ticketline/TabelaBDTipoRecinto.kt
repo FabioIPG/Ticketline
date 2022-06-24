@@ -21,7 +21,7 @@ class TabelaBDTipoRecinto (db: SQLiteDatabase) : TabelaBD(db, NOME) {
         orderBy: String?
     ): Cursor {
         val queryBuilder = SQLiteQueryBuilder()
-        queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDLocais.NOME} ON ${TabelaBDLocais.CAMPO_ID} = $CAMPO_LOCAL_ID"
+        queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDLocais.NOME} ON ${TabelaBDLocais.NOME}.${BaseColumns._ID} = $CAMPO_LOCAL_ID"
 
         return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
@@ -34,6 +34,6 @@ class TabelaBDTipoRecinto (db: SQLiteDatabase) : TabelaBD(db, NOME) {
         const val CAMPO_LOCAL_ID = "localId"
 
 
-        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME_TIPO_RECINTO, CAMPO_LOCAL_ID)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME_TIPO_RECINTO, CAMPO_LOCAL_ID, TabelaBDLocais.CAMPO_NOME_LOCAL)
     }
 }

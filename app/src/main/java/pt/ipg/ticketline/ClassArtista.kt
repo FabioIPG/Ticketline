@@ -9,7 +9,7 @@ data class ClassArtista (
         var nome_do_artista: String,
         var endereco: String,
         var telemovel: String,
-        var nacionalidade_id: Long,
+        var nacionalidade: ClassNacionalidade,
         var id: Long= 1
 ) {
     fun toContentValues() : ContentValues {
@@ -17,7 +17,7 @@ data class ClassArtista (
         valores.put(TabelaBDArtistas.CAMPO_NOME_DO_ARTISTA, nome_do_artista)
         valores.put(TabelaBDArtistas.CAMPO_ENDERECO, endereco)
         valores.put(TabelaBDArtistas.CAMPO_TELEMOVEL, telemovel)
-        valores.put(TabelaBDArtistas.CAMPO_NACIONALIDADE_ID, nacionalidade_id)
+        valores.put(TabelaBDArtistas.CAMPO_NACIONALIDADE_ID, nacionalidade.id)
 
         return valores
     }
@@ -29,15 +29,19 @@ data class ClassArtista (
             val posEndereco = cursor.getColumnIndex(TabelaBDArtistas.CAMPO_ENDERECO)
             val posTelemovel = cursor.getColumnIndex(TabelaBDArtistas.CAMPO_TELEMOVEL)
             val posIdNacionalidade = cursor.getColumnIndex(TabelaBDArtistas.CAMPO_NACIONALIDADE_ID)
+            val posNomeNacionalidade = cursor.getColumnIndex(TabelaBDNacionalidade.CAMPO_NACIONALIDADE)
 
             val id = cursor.getLong(posId)
             val nome = cursor.getString(posNome)
             val endereco = cursor.getString(posEndereco)
             val telemovel = cursor.getString(posTelemovel)
             val idNacionalidade = cursor.getLong(posIdNacionalidade)
+            val nomeNacionalidade = cursor.getString(posNomeNacionalidade)
+
+            val nacionalidade = ClassNacionalidade(nomeNacionalidade,idNacionalidade)
 
 
-            return ClassArtista(nome,endereco,telemovel,idNacionalidade,id)
+            return ClassArtista(nome,endereco,telemovel,nacionalidade,id)
         }
     }
 

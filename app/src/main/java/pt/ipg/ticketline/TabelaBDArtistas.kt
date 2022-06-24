@@ -23,7 +23,7 @@ class TabelaBDArtistas(db: SQLiteDatabase) : TabelaBD(db, NOME) {
         orderBy: String?
     ): Cursor {
         val queryBuilder = SQLiteQueryBuilder()
-        queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDNacionalidade.NOME} ON ${TabelaBDNacionalidade.CAMPO_ID} = $CAMPO_NACIONALIDADE_ID"
+        queryBuilder.tables = "$NOME INNER JOIN ${TabelaBDNacionalidade.NOME} ON ${TabelaBDNacionalidade.NOME}.${BaseColumns._ID} = $CAMPO_NACIONALIDADE_ID"
 
         return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
@@ -37,6 +37,6 @@ class TabelaBDArtistas(db: SQLiteDatabase) : TabelaBD(db, NOME) {
         const val CAMPO_TELEMOVEL = "telemovel"
         const val CAMPO_NACIONALIDADE_ID = "nacionalidade_id"
 
-        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME_DO_ARTISTA, CAMPO_ENDERECO, CAMPO_TELEMOVEL, CAMPO_NACIONALIDADE_ID)
+        val TODAS_COLUNAS = arrayOf(CAMPO_ID, CAMPO_NOME_DO_ARTISTA, CAMPO_ENDERECO, CAMPO_TELEMOVEL, CAMPO_NACIONALIDADE_ID, TabelaBDNacionalidade.CAMPO_NACIONALIDADE)
     }
 }

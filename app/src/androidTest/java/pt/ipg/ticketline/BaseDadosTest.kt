@@ -101,10 +101,8 @@ class BaseDadosTest {
         val nacionalidade = ClassNacionalidade("Brasileira")
         insereNacionalidade(db, nacionalidade)
 
-        val artista = ClassArtista("Diogo Piçarra","Faro","936464297", nacionalidade.id)
-        artista.id = TabelaBDArtistas(db).insert(artista.toContentValues())
-
-        assertNotEquals(-1, artista.id)
+        val artista = ClassArtista("Diogo Piçarra","Faro","936464297", nacionalidade)
+        insereArtista(db, artista)
 
         db.close()
     }
@@ -125,10 +123,8 @@ class BaseDadosTest {
         val local = ClassLocal("Teste","Teste","Teste","9999")
         insereLocal(db, local)
 
-        val tipoRecinto = ClassTipoRecinto("Teste", local.id)
-        tipoRecinto.id = TabelaBDTipoRecinto(db).insert(tipoRecinto.toContentValues())
-
-        assertNotEquals(-1, tipoRecinto.id)
+        val tipoRecinto = ClassTipoRecinto("Teste", local)
+        insereTipoRecinto(db, tipoRecinto)
 
         db.close()
     }
@@ -148,10 +144,8 @@ class BaseDadosTest {
         val local = ClassLocal("Teste2","Teste2","Teste2","8888")
         insereLocal(db, local)
 
-        val evento = ClassEvento("DIOGOPIÇARRA",21062022, local.id)
-        evento.id = TabelaBDEventos(db).insert(evento.toContentValues())
-
-        assertNotEquals(-1, evento.id)
+        val evento = ClassEvento("DIOGOPIÇARRA",21062022, local)
+        insereEvento(db, evento)
 
         db.close()
     }
@@ -200,13 +194,13 @@ class BaseDadosTest {
         val nacionalidade = ClassNacionalidade("Teste2")
         insereNacionalidade(db, nacionalidade)
 
-        val artista = ClassArtista("teste2","teste2","teste2",nacionalidade.id)
+        val artista = ClassArtista("teste2","teste2","teste2",nacionalidade)
         insereArtista(db, artista)
 
         artista.nome_do_artista = "Billie Eilish"
         artista.endereco = " Los Angeles, Califórnia, EUA"
         artista.telemovel = "933516760"
-        artista.nacionalidade_id = nacionalidade.id
+        artista.nacionalidade = nacionalidade
 
         val registosAlterados = TabelaBDArtistas(db).update(
             artista.toContentValues(),
@@ -247,11 +241,11 @@ class BaseDadosTest {
         val local = ClassLocal("teste4","teste4","teste4","teste4")
         insereLocal(db, local)
 
-        val tipoRecinto = ClassTipoRecinto("Teste2",local.id)
+        val tipoRecinto = ClassTipoRecinto("Teste2",local)
         insereTipoRecinto(db, tipoRecinto)
 
         tipoRecinto.nome_tipo_recinto = "relvado"
-        tipoRecinto.locaisId = local.id
+        tipoRecinto.local = local
 
         val registosAlterados = TabelaBDTipoRecinto(db).update(
             tipoRecinto.toContentValues(),
@@ -290,12 +284,12 @@ class BaseDadosTest {
         val local = ClassLocal("teste5","teste5","teste5","teste5")
         insereLocal(db, local)
 
-        val evento = ClassEvento("Teste",22062022,local.id)
+        val evento = ClassEvento("Teste",22062022,local)
         insereEvento(db, evento)
 
         evento.nome_evento = "Processo"
         evento.data = 23062022
-        evento.local_id = local.id
+        evento.local = local
 
         val registosAlterados = TabelaBDEventos(db).update(
             evento.toContentValues(),
@@ -347,7 +341,7 @@ class BaseDadosTest {
         val nacionalidade = ClassNacionalidade("Teste5")
         insereNacionalidade(db, nacionalidade)
 
-        val artista = ClassArtista("teste5","teste5","teste5",nacionalidade.id)
+        val artista = ClassArtista("teste5","teste5","teste5",nacionalidade)
         insereArtista(db, artista)
 
         val registosEliminados = TabelaBDArtistas(db).delete(
@@ -382,7 +376,7 @@ class BaseDadosTest {
         val local = ClassLocal("teste6","teste6","teste6","teste6")
         insereLocal(db, local)
 
-        val tipoRecinto = ClassTipoRecinto("Teste6",local.id)
+        val tipoRecinto = ClassTipoRecinto("Teste6",local)
         insereTipoRecinto(db, tipoRecinto)
 
         val registosEliminados = TabelaBDTipoRecinto(db).delete(
@@ -417,7 +411,7 @@ class BaseDadosTest {
         val local = ClassLocal("teste7","teste7","teste7","teste7")
         insereLocal(db, local)
 
-        val evento = ClassEvento("Teste7",23062022,local.id)
+        val evento = ClassEvento("Teste7",23062022,local)
         insereEvento(db, evento)
 
         val registosEliminados = TabelaBDEventos(db).delete(
@@ -488,7 +482,7 @@ class BaseDadosTest {
         val nacionalidade = ClassNacionalidade("Teste9")
         insereNacionalidade(db, nacionalidade)
 
-        val artista = ClassArtista("teste9","teste9","teste9",nacionalidade.id)
+        val artista = ClassArtista("teste9","teste9","teste9",nacionalidade)
         insereArtista(db, artista)
 
         val cursor = TabelaBDArtistas(db).query(
@@ -543,7 +537,7 @@ class BaseDadosTest {
         val local = ClassLocal("teste10","teste10","teste10","teste10")
         insereLocal(db, local)
 
-        val tipoRecinto = ClassTipoRecinto("Teste10",local.id)
+        val tipoRecinto = ClassTipoRecinto("Teste10",local)
         insereTipoRecinto(db, tipoRecinto)
 
         val cursor = TabelaBDTipoRecinto(db).query(
@@ -598,7 +592,7 @@ class BaseDadosTest {
         val local = ClassLocal("teste11","teste11","teste11","teste11")
         insereLocal(db, local)
 
-        val evento = ClassEvento("Teste11",24062022,local.id)
+        val evento = ClassEvento("Teste11",24062022,local)
         insereEvento(db, evento)
 
         val cursor = TabelaBDEventos(db).query(
