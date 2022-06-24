@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/Ticketline/app/src/main/res/drawable/ic_add.xml" value="0.1" />
         <entry key="..\:/Android/Ticketline/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_first.xml" value="0.2" />
         <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_lista_eventos.xml" value="0.1" />
         <entry key="..\:/Android/Ticketline/app/src/main/res/layout/item_evento.xml" value="0.1" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/menu/menu_lista.xml" value="0.1" />
       </map>
     </option>
   </component>
