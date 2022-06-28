@@ -9,12 +9,24 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.fragment.app.Fragment
 import pt.ipg.ticketline.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+
+    var fragment : Fragment? = null
+
+    var idMenuAtual = R.menu.menu_main
+        get() = field
+        set(value) {
+            if (value != field) {
+                field = value
+                invalidateOptionsMenu()
+            }
+        }
 
     private var menu: Menu? = null
 
@@ -33,7 +45,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(idMenuAtual, menu)
+        this.menu = menu
         return true
     }
 
@@ -41,9 +54,23 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+
+        val opcaoProcessada : Boolean
+
+        if (fragment is FragMenuPrincipal) {
+            opcaoProcessada = (fragment as FragMenuPrincipal).processaOpcaoMenu(item)
+        } else if (fragment is ListaEventosFragment) {
+            opcaoProcessada = (fragment as ListaEventosFragment).processaOpcaoMenu(item)
+        } else if (fragment is ListaEventosFragment) {
+            opcaoProcessada = (fragment as InserirEventoFragment).processaOpcaoMenu(item)
+        } else {
+            opcaoProcessada = false
+        }
+
+        return if (opcaoProcessada) {
+            true
+        } else {
+            super.onOptionsItemSelected(item)
         }
     }
 

@@ -3,4 +3,9 @@
     <item name="nav_host_fragment_content_main" type="id" />
     <item name="action_alterar" type="id" />
     <item name="action_eliminar" type="id" />
+    <item name="action_ListaLivrosFragment_to_InserirLivroFragment" type="id" />
+    <item name="action_ListaEventosFragment_to_InserirEventoFragment" type="id" />
+    <item name="action_guardar" type="id" />
+    <item name="action_cancelar" type="id" />
+    <item name="action_InserirEventoFragment_to_ListaEventosFragment" type="id" />
 </resources>

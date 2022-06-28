@@ -6,10 +6,10 @@ import android.provider.BaseColumns
 
 data class ClassEvento(
 
-        var nome_evento: String,
-        var data: Long,
-        var local: ClassLocal,
-        var id: Long = 1
+    var nome_evento: String,
+    var data: String,
+    var local: ClassLocal,
+    var id: Long = 1
 
 ) {
     fun toContentValues() : ContentValues {

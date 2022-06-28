@@ -2,79 +2,113 @@ package pt.ipg.ticketline
 
 import android.database.Cursor
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SimpleCursorAdapter
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import pt.ipg.ticketline.databinding.FragmentListaEventosBinding
+import com.google.android.material.snackbar.Snackbar
+import pt.ipg.ticketline.databinding.FragmentInserirEventoBinding
 
+class InserirEventoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+    private var _binding: FragmentInserirEventoBinding? = null
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
-class ListaEventosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
-
-    var eventoSelecionado: ClassEvento? = null
-        get() = field
-        set(value) {
-            if (value != field) {
-                field = value
-                (requireActivity() as MainActivity).atualizaOpcoesLista(field != null)
-            }
-        }
-
-    private var _binding: FragmentListaEventosBinding? = null
-    private var adapterEventos : AdapterEventos? = null
-
+    // This property is only valid between onCreateView and
+    // onDestroyView.
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        _binding = FragmentListaEventosBinding.inflate(inflater, container, false)
+        _binding = FragmentInserirEventoBinding.inflate(inflater, container, false)
         return binding.root
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        LoaderManager.getInstance(this).initLoader(ID_LOADER_EVENTOS, null, this)
-
-        adapterEventos = AdapterEventos(this)
-        binding.recyclerViewEventos.adapter = adapterEventos
-        binding.recyclerViewEventos.layoutManager = LinearLayoutManager(requireContext())
-
-
-        val activity = requireActivity() as MainActivity
-        activity.fragment = this
-        activity.idMenuAtual = R.menu.menu_lista
-    }
-
-    fun processaOpcaoMenu(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_inserir -> {
-                findNavController().navigate(R.id.action_ListaEventosFragment_to_InserirEventoFragment)
-                return true
-            }
-            R.id.action_alterar -> true
-            R.id.action_eliminar -> true
-            else -> false
-        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_LOCAIS, null, this)
+
+        val activity = requireActivity() as MainActivity
+        activity.fragment = this
+        activity.idMenuAtual = R.menu.menu_edicao
+    }
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_guardar -> {
+                guardar()
+                true
+            }
+            R.id.action_cancelar -> {
+                voltaListaLivros()
+                true
+            }
+            else -> false
+        }
+    }
+
+    private fun voltaListaLivros() {
+        findNavController().navigate(R.id.action_InserirEventoFragment_to_ListaEventosFragment)
+    }
+
+    private fun guardar() {
+        val nome_evento = binding.editTextNomeEvento.text.toString()
+        if (nome_evento.isBlank()) {
+            binding.editTextNomeEvento.error = "Escolher Nome Evento"
+            binding.editTextNomeEvento.requestFocus()
+            return
+        }
+
+
+        val data = binding.editTextData.text.toString()
+        if (data.isBlank()) {
+            binding.editTextData.error = "Escolher Data"
+            binding.editTextData.requestFocus()
+            return
+        }
+
+        val idLocal = binding.spinnerLocais.selectedItemId
+        if (idLocal == Spinner.INVALID_ROW_ID) {
+            binding.textViewLocal.error = "Escolher Local"
+            binding.spinnerLocais.requestFocus()
+            return
+        }
+
+        val evento = ClassEvento(
+            nome_evento,
+            data,
+            ClassLocal("","","","", idLocal) // O nome da local não interessa porque o que é guardado é a chave estrangeira
+        )
+
+        val endereco = requireActivity().contentResolver.insert(
+            ContentProviderEventos.ENDERECO_EVENTOS,
+            evento.toContentValues()
+        )
+
+        if (endereco != null) {
+            Toast.makeText(requireContext(), R.string.evento_inserido_sucesso, Toast.LENGTH_LONG).show()
+            voltaListaLivros()
+        } else {
+            Snackbar.make(binding.editTextNomeEvento, R.string.erro_inserir_evento, Snackbar.LENGTH_INDEFINITE).show()
+        }
+    }
+
+    companion object {
+        const val ID_LOADER_LOCAIS = 0
     }
 
     /**
@@ -90,11 +124,11 @@ class ListaEventosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
         CursorLoader(
             requireContext(),
-            ContentProviderEventos.ENDERECO_EVENTOS,
-            TabelaBDEventos.TODAS_COLUNAS,
+            ContentProviderEventos.ENDERECO_CATEGORIAS,
+            TabelaBDLocais.TODAS_COLUNAS,
             null,
             null,
-            "${TabelaBDEventos.NOME}"
+            TabelaBDLocais.CAMPO_NOME_LOCAL
         )
 
     /**
@@ -141,7 +175,14 @@ class ListaEventosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      * @param data The data generated by the Loader.
      */
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        adapterEventos!!.cursor = data
+        binding.spinnerLocais.adapter = SimpleCursorAdapter(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            data,
+            arrayOf(TabelaBDLocais.CAMPO_NOME_LOCAL),
+            intArrayOf(android.R.id.text1),
+            0
+        )
     }
 
     /**
@@ -155,10 +196,6 @@ class ListaEventosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        adapterEventos!!.cursor = null
-    }
-
-    companion object {
-        const val ID_LOADER_EVENTOS = 0
+        binding.spinnerLocais.adapter = null
     }
 }
