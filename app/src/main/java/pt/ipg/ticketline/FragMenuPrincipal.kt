@@ -36,6 +36,29 @@ class FragMenuPrincipal : Fragment() {
             findNavController().navigate(R.id.action_FirstFragment_to_ListaEventos)
         }
 
+        binding.buttonArtistas.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_ListaArtistas)
+        }
+
+        binding.buttonCategorias.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_ListaCategorias)
+        }
+
+        binding.buttonLocais.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_ListaLocais)
+        }
+
+        binding.buttonNacionalidade.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_ListaNacionalidades)
+        }
+
+        binding.buttonPromotores.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_ListaPromotores)
+        }
+        binding.buttonTipoRecintos.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_ListaTipoRecintos)
+        }
+
         val activity = activity as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_main
