@@ -2,7 +2,6 @@ package pt.ipg.ticketline
 
 import android.content.ContentProvider
 import android.content.ContentValues
-import android.content.IntentFilter
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
