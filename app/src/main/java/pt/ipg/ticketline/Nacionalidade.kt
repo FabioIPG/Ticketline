@@ -4,9 +4,9 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
 
-data class ClassNacionalidade(
+data class Nacionalidade(
 
-    var nacionalidade: String,
+    var nacionalidade: String = "",
     var id: Long = 1
 
     ) {
@@ -19,7 +19,7 @@ data class ClassNacionalidade(
     }
 
     companion object {
-        fun fromCursor(cursor: Cursor): ClassNacionalidade {
+        fun fromCursor(cursor: Cursor): Nacionalidade {
             val posId = cursor.getColumnIndex(BaseColumns._ID)
 
             val posNacionalidade = cursor.getColumnIndex(TabelaBDNacionalidade.CAMPO_NACIONALIDADE)
@@ -27,7 +27,7 @@ data class ClassNacionalidade(
             val id = cursor.getLong(posId)
             val nacionalidade = cursor.getString(posNacionalidade)
 
-            return ClassNacionalidade(nacionalidade, id)
+            return Nacionalidade(nacionalidade, id)
         }
     }
 }

@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
 
-data class ClassCategoria (
+data class Categoria (
         var nome_categoria: String,
         var id: Long= 1
 ) {
@@ -15,14 +15,14 @@ data class ClassCategoria (
     }
 
     companion object {
-        fun fromCursor(cursor: Cursor): ClassCategoria {
+        fun fromCursor(cursor: Cursor): Categoria {
             val posId = cursor.getColumnIndex(BaseColumns._ID)
             val posNome = cursor.getColumnIndex(TabelaBDCategoria.CAMPO_NOME_CATEGORIA)
 
             val id = cursor.getLong(posId)
             val nome = cursor.getString(posNome)
 
-            return ClassCategoria(nome, id)
+            return Categoria(nome, id)
         }
     }
 }
