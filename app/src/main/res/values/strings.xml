@@ -4,7 +4,8 @@
 
     <string name="first_fragment_label">First Fragment</string>
     <string name="lista_eventos_label">Eventos</string>
-    <string name="inserir_evento_label">Novo Evento</string>
+    <string name="inserir_evento_label">Inserir Evento</string>
+    <string name="alterar_evento_label">Alterar Evento</string>
     <string name="eliminar_evento_label">Eliminar Evento</string>
 
 
@@ -33,7 +34,92 @@
     <string name="data_obrigatoria">Preencha a Data</string>
     <string name="local_obrigatorio">Escolha o Local</string>
 
-    <string name="evento_inserido_sucesso">Evento inserido com sucesso.</string>
-    <string name="erro_inserir_evento">Erro ao inserir evento.</string>
+    <string name="evento_guardado_sucesso">Evento guardado com sucesso</string>
+    <string name="evento_eliminado_sucesso">Evento eliminado com sucesso</string>
+
+    <string name="erro_guardar_evento">Erro ao guardar evento</string>
+    <string name="erro_eliminar_evento">Erro ao eliminar evento</string>
+
+    <string name="confirma_eliminar_evento">Tem a certeza que pretende eliminar o evento? </string>
+    <string name="nome_local">Nome Local</string>
+    <string name="localizacao">Localizacao</string>
+    <string name="endereco">Endereco</string>
+    <string name="capacidade">Capacidade</string>
+    <string name="enderecoArt">Endereco</string>
+    <string name="nome_artista">Nome Artista</string>
+    <string name="nacionalidadeArt">Nacionalidade</string>
+    <string name="telemovelArt">Telemovel</string>
+    <string name="categoriaCat">Categoria</string>
+    <string name="promotorProm">Promotor</string>
+    <string name="tipoTecintoRec">Tipo Recinto</string>
+    <string name="eliminar_artista_label">Eliminar Artista</string>
+    <string name="eliminar_categoria_label">Eliminar Categoria</string>
+    <string name="eliminar_local_label">Eliminar Local</string>
+    <string name="eliminar_promotor_label">Eliminar Promotor</string>
+    <string name="nome_promotor">Nome Promotor</string>
+    <string name="eliminar_tipoRecinto_label">Eliminar Tipo Recinto</string>
+    <string name="nome_tipoRecinto">Nome Tipo Recinto</string>
+    <string name="eliminar_nacionalidade_label">Eliminar Nacionalidade</string>
+    <string name="nome_categoria_obrigatorio">Preencha o Nome Categoria</string>
+    <string name="categoria_guardada_sucesso">Categoria guardada com sucesso</string>
+    <string name="erro_guardar_categoria">Erro ao guardar categoria</string>
+    <string name="lista_artistas_label">Artistas</string>
+    <string name="lista_categorias_label">Categorias</string>
+    <string name="lista_locais_label">Locais</string>
+    <string name="lista_nacionalidades_label">Nacionalidades</string>
+    <string name="lista_promotores_label">Promotores</string>
+    <string name="lista_tipoRecintos_label">Tipo Recintos</string>
+    <string name="nome_promotor_obrigatorio">Preencha o Nome do  Promotor</string>
+    <string name="promotor_guardado_sucesso">Promotor guardado com sucesso</string>
+    <string name="erro_guardar_promotor">Erro ao guardar promotor</string>
+    <string name="inserir_promotor_label">Inserir Promotor</string>
+    <string name="alterar_promotor_label">Alterar Promotor </string>
+    <string name="confirma_eliminar_promotor">Tem a certeza que pretende eliminar o promotor?</string>
+    <string name="erro_eliminar_promotor">Erro ao eliminar promotor</string>
+    <string name="promotor_eliminado_sucesso">Promotor eliminado com sucesso</string>
+    <string name="categoria_guardado_sucesso">Categoria guardada com sucesso</string>
+    <string name="nome_nacionalidade_obrigatorio">Preencha Nacionalidade</string>
+    <string name="nacionalidade_guardada_sucesso">Nacionalidade guardada com sucesso</string>
+    <string name="erro_guardar_nacionalidade">Erro ao guardar nacionalidade</string>
+    <string name="nome_tipoRecinto_obrigatorio">Preencha Tipo Recinto</string>
+    <string name="tipoTecinto_guardado_sucesso">Tipo Recinto guardado com sucesso</string>
+    <string name="erro_guardar_tipoRecinto">Erro ao guardar tipo recinto</string>
+    <string name="nome_artista_obrigatorio">Preencha Nome Artista</string>
+    <string name="endereco_obrigatoria">Preencha Endereco</string>
+    <string name="artista_guardado_sucesso">Artista guardado com sucesso</string>
+    <string name="erro_guardar_artista">Erro ao guardar artista</string>
+    <string name="telemovel_obrigatorio">Preencha Numero Telemovel</string>
+    <string name="nacionalidade_obrigatorio">Preencha Nacionalidade</string>
+    <string name="nacionalidade_obrigatoria">Preencha Nacionalidade</string>
+    <string name="nome_local_obrigatorio">Preencha Nome Local</string>
+    <string name="localizacao_obrigatoria">Preencha Localizacao</string>
+    <string name="endereco_obrigatorio">Preencha Endereco</string>
+    <string name="capacidade_obrigatoria">Preencha Capacidade</string>
+    <string name="local_guardado_sucesso">Local guardado com sucesso</string>
+    <string name="erro_guardar_local">Erro ao guardar local</string>
+    <string name="confirma_eliminar_categoria">Tem a certeza que pretende eliminar a categoria?</string>
+    <string name="erro_eliminar_categoria">Erro ao eliminar categoria</string>
+    <string name="categoria_eliminado_sucesso">Categoria eliminado com sucesso</string>
+    <string name="confirma_eliminar_tipoRecinto">Tem a certeza que pretende eliminar o tipo recinto?</string>
+    <string name="erro_eliminar_tipoRecinto">Erro ao eliminar tipo recinto</string>
+    <string name="tipoRecinto_eliminado_sucesso">Tipo Recinto eliminado com sucesso</string>
+    <string name="confirma_eliminar_nacionalidade">Tem a certeza que pretende eliminar a nacionalidade?</string>
+    <string name="erro_eliminar_nacionalidade">Erro ao eliminar nacionalidade</string>
+    <string name="nacionalidade_eliminado_sucesso">Nacionalidade eliminado com sucesso</string>
+    <string name="confirma_eliminar_local">Tem a certeza que pretende eliminar o local?</string>
+    <string name="erro_eliminar_local">Erro ao eliminar local</string>
+    <string name="local_eliminado_sucesso">Local eliminado com sucesso</string>
+    <string name="confirma_eliminar_artista">Tem a certeza que pretende eliminar o artista?</string>
+    <string name="erro_eliminar_artista">Erro ao eliminar artista</string>
+    <string name="artista_eliminado_sucesso">Artista eliminado com sucesso</string>
+    <string name="inserir_artista_label">Inserir Artista</string>
+    <string name="alterar_artista_label">Alterar Artista</string>
+    <string name="inserir_categoria_label">Inserir Categoria</string>
+    <string name="alterar_categoria_label">Alterar Categoria</string>
+    <string name="alterar_local_label">Alterar Local</string>
+    <string name="inserir_local_label">Inserir Local</string>
+    <string name="inserir_tipoRecinto_label">Inserir Tipo Recinto</string>
+    <string name="alterar_tipoRecinto_label">Alterar Tipo Recinto</string>
+
 
 </resources>
