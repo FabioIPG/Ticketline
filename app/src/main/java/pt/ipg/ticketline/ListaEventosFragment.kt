@@ -20,13 +20,11 @@ import pt.ipg.ticketline.databinding.FragmentListaEventosBinding
  */
 class ListaEventosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
-    var eventoSelecionado: ClassEvento? = null
+    var eventoSelecionado: Evento? = null
         get() = field
         set(value) {
-            if (value != field) {
-                field = value
+                 field = value
                 (requireActivity() as MainActivity).atualizaOpcoesLista(field != null)
-            }
         }
 
     private var _binding: FragmentListaEventosBinding? = null
@@ -55,21 +53,9 @@ class ListaEventosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         binding.recyclerViewEventos.layoutManager = LinearLayoutManager(requireContext())
 
 
-        val activity = requireActivity() as MainActivity
+        val activity = activity as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_lista
-    }
-
-    fun processaOpcaoMenu(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_inserir -> {
-                findNavController().navigate(R.id.action_ListaEventosFragment_to_InserirEventoFragment)
-                return true
-            }
-            R.id.action_alterar -> true
-            R.id.action_eliminar -> true
-            else -> false
-        }
     }
 
     override fun onDestroyView() {
@@ -155,8 +141,32 @@ class ListaEventosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
+        if(_binding == null) return
         adapterEventos!!.cursor = null
     }
+
+    fun processaOpcaoMenu(item: MenuItem) : Boolean =
+        when(item.itemId) {
+            R.id.action_inserir -> {
+                val acao = ListaEventosFragmentDirections.actionListaEventosToEditarEvento()
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaNomeEvento(R.string.inserir_evento_label)
+                true
+            }
+            R.id.action_alterar -> {
+                val acao = ListaEventosFragmentDirections.actionListaEventosToEditarEvento(eventoSelecionado)
+                findNavController().navigate(acao)
+                (activity as MainActivity).atualizaNomeEvento(R.string.alterar_evento_label)
+                true
+            }
+            R.id.action_eliminar -> {
+                val acao = ListaEventosFragmentDirections.actionListaEventosFragmentToEliminarEventoFragment(eventoSelecionado!!)
+                findNavController().navigate(acao)
+                true
+            }
+            else -> false
+        }
+
 
     companion object {
         const val ID_LOADER_EVENTOS = 0
