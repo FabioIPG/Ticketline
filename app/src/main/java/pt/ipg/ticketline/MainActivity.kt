@@ -61,17 +61,18 @@ class MainActivity : AppCompatActivity() {
             opcaoProcessada = (fragment as FragMenuPrincipal).processaOpcaoMenu(item)
         } else if (fragment is ListaEventosFragment) {
             opcaoProcessada = (fragment as ListaEventosFragment).processaOpcaoMenu(item)
-        } else if (fragment is ListaEventosFragment) {
-            opcaoProcessada = (fragment as InserirEventoFragment).processaOpcaoMenu(item)
+        } else if (fragment is EditarEventoFragment) {
+            opcaoProcessada = (fragment as EditarEventoFragment).processaOpcaoMenu(item)
+        } else if (fragment is EliminarEventoFragment) {
+            opcaoProcessada = (fragment as EliminarEventoFragment).processaOpcaoMenu(item)
         } else {
             opcaoProcessada = false
         }
 
-        return if (opcaoProcessada) {
-            true
-        } else {
-            super.onOptionsItemSelected(item)
-        }
+        if (opcaoProcessada) return true
+
+        return super.onOptionsItemSelected(item)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -84,5 +85,34 @@ class MainActivity : AppCompatActivity() {
         menu!!.findItem(R.id.action_alterar).setVisible(mostraAlterarEliminar)
         menu!!.findItem(R.id.action_eliminar).setVisible(mostraAlterarEliminar)
     }
+
+    fun atualizaNomeEvento(id_string_nomeEvento: Int) {
+        binding.toolbar.setTitle(id_string_nomeEvento)
+    }
+
+    fun atualizaNomePromotor(id_string_nomePromotor: Int) {
+        binding.toolbar.setTitle(id_string_nomePromotor)
+    }
+
+    fun atualizaNomeArtista(id_string_nomeArtista: Int) {
+        binding.toolbar.setTitle(id_string_nomeArtista)
+    }
+
+    fun atualizaNomeCategoria(id_string_nomeCategoria: Int) {
+        binding.toolbar.setTitle(id_string_nomeCategoria)
+    }
+
+    fun atualizaNomeLocal(id_string_nomeLocal: Int) {
+        binding.toolbar.setTitle(id_string_nomeLocal)
+    }
+
+    fun atualizaNomeNacionalidade(id_string_nomeNacionalidade: Int) {
+        binding.toolbar.setTitle(id_string_nomeNacionalidade)
+    }
+
+    fun atualizaNomeTipoRecinto(id_string_nomeTipoRecinto: Int) {
+        binding.toolbar.setTitle(id_string_nomeTipoRecinto)
+    }
+
 
 }
