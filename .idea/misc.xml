@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+
         <entry key="..\:/Android/Ticketline/app/src/main/res/drawable/ic_add.xml" value="0.1" />
         <entry key="..\:/Android/Ticketline/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Android/Ticketline/app/src/main/res/layout/content_main.xml" value="0.1" />
@@ -20,7 +21,7 @@
         <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_eliminar_nacionalidade.xml" value="0.2421875" />
         <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_eliminar_promotor.xml" value="0.23489583333333333" />
         <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_eliminar_tipo_recinto.xml" value="0.264" />
-        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_first.xml" value="0.2" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_first.xml" value="0.264" />
         <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_inserir_evento.xml" value="0.1" />
         <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_lista_artistas.xml" value="0.23802083333333332" />
         <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_lista_categorias.xml" value="0.23958333333333334" />
