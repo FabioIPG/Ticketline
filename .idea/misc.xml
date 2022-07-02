@@ -5,12 +5,43 @@
       <map>
         <entry key="..\:/Android/Ticketline/app/src/main/res/drawable/ic_add.xml" value="0.1" />
         <entry key="..\:/Android/Ticketline/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/content_main.xml" value="0.1" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_editar_artista.xml" value="0.264" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_editar_categoria.xml" value="0.1" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_editar_evento.xml" value="0.1" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_editar_local.xml" value="0.264" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_editar_nacionalidade.xml" value="0.23489583333333333" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_editar_promotor.xml" value="0.2421875" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_editar_tipo_recinto.xml" value="0.1" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_eliminar_artista.xml" value="0.264" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_eliminar_categoria.xml" value="0.23489583333333333" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_eliminar_evento.xml" value="0.264" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_eliminar_local.xml" value="0.264" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_eliminar_nacionalidade.xml" value="0.2421875" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_eliminar_promotor.xml" value="0.23489583333333333" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_eliminar_tipo_recinto.xml" value="0.264" />
         <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_first.xml" value="0.2" />
         <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_inserir_evento.xml" value="0.1" />
-        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_lista_eventos.xml" value="0.1" />
-        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/item_evento.xml" value="0.1" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_lista_artistas.xml" value="0.23802083333333332" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_lista_categorias.xml" value="0.23958333333333334" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_lista_eventos.xml" value="0.152" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_lista_locais.xml" value="0.2421875" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_lista_nacionalidades.xml" value="0.24114583333333334" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_lista_promotores.xml" value="0.2421875" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_lista_tipo_recintos.xml" value="0.2421875" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/fragment_third.xml" value="0.2421875" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/item_artista.xml" value="0.264" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/item_categoria.xml" value="0.2" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/item_evento.xml" value="0.264" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/item_local.xml" value="0.2421875" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/item_nacionalidade.xml" value="0.24114583333333334" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/item_promotor.xml" value="0.2421875" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/item_promotores.xml" value="0.1" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/layout/item_tipo_recinto.xml" value="0.264" />
         <entry key="..\:/Android/Ticketline/app/src/main/res/menu/menu_edicao.xml" value="0.1" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/menu/menu_eliminar.xml" value="0.1675925925925926" />
         <entry key="..\:/Android/Ticketline/app/src/main/res/menu/menu_lista.xml" value="0.1" />
+        <entry key="..\:/Android/Ticketline/app/src/main/res/menu/menu_main.xml" value="0.2421875" />
       </map>
     </option>
   </component>
