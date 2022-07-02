@@ -1,7 +1,6 @@
 package pt.ipg.ticketline
 
 import android.database.Cursor
-import android.provider.BaseColumns
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -17,6 +16,8 @@ class AdapterEventos(val fragment: ListaEventosFragment) : RecyclerView.Adapter<
             }
         }
 
+    var viewHolderSelecionado : ViewHolderEvento? = null
+
     inner class ViewHolderEvento(itemEvento: View) : RecyclerView.ViewHolder(itemEvento), View.OnClickListener {
         val textViewNome = itemEvento.findViewById<TextView>(R.id.textViewNome)
         val textViewData = itemEvento.findViewById<TextView>(R.id.textViewData)
@@ -26,13 +27,13 @@ class AdapterEventos(val fragment: ListaEventosFragment) : RecyclerView.Adapter<
             itemEvento.setOnClickListener(this)
         }
 
-        var evento: ClassEvento? = null
+        var evento: Evento? = null
             get() = field
-            set(value) {
+            set(value: Evento?) {
                 field = value
 
                 textViewNome.text = evento?.nome_evento ?: ""
-                textViewData.text = (evento?.data ?: "") as CharSequence?
+                textViewData.text = evento?.data ?: ""
                 textViewLocal.text = evento?.local?.nome_local?: ""
             }
 
@@ -42,14 +43,14 @@ class AdapterEventos(val fragment: ListaEventosFragment) : RecyclerView.Adapter<
          * @param v The view that was clicked.
          */
         override fun onClick(v: View?) {
-            seleccionado?.desseleciona()
-            this.seleciona()
+            viewHolderSelecionado?.desseleciona()
+            seleciona()
         }
 
         private fun seleciona() {
-            seleccionado = this
-            fragment.eventoSelecionado = evento
             itemView.setBackgroundResource(android.R.color.holo_orange_light)
+            viewHolderSelecionado = this
+            fragment.eventoSelecionado = evento
         }
 
         private fun desseleciona() {
@@ -107,7 +108,7 @@ class AdapterEventos(val fragment: ListaEventosFragment) : RecyclerView.Adapter<
      */
     override fun onBindViewHolder(holder: ViewHolderEvento, position: Int) {
         cursor!!.moveToPosition(position)
-        holder.evento = ClassEvento.fromCursor(cursor!!)
+        holder.evento = Evento.fromCursor(cursor!!)
     }
 
     /**
@@ -120,9 +121,4 @@ class AdapterEventos(val fragment: ListaEventosFragment) : RecyclerView.Adapter<
 
         return cursor!!.count
     }
-
-    companion object {
-        var seleccionado : ViewHolderEvento? = null
-    }
-
 }
