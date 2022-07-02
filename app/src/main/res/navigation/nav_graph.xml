@@ -14,6 +14,31 @@
         <action
             android:id="@+id/action_FirstFragment_to_ListaEventos"
             app:destination="@id/ListaEventosFragment" />
+
+        <action
+            android:id="@+id/action_FirstFragment_to_ListaArtistas"
+            app:destination="@id/ListaArtistasFragment" />
+
+        <action
+            android:id="@+id/action_FirstFragment_to_ListaCategorias"
+            app:destination="@id/ListaCategoriasFragment" />
+
+        <action
+            android:id="@+id/action_FirstFragment_to_ListaLocais"
+            app:destination="@id/ListaLocaisFragment" />
+
+        <action
+            android:id="@+id/action_FirstFragment_to_ListaNacionalidades"
+            app:destination="@id/ListaNacionalidadesFragment" />
+
+        <action
+            android:id="@+id/action_FirstFragment_to_ListaPromotores"
+            app:destination="@id/ListaPromotoresFragment" />
+
+        <action
+            android:id="@+id/action_FirstFragment_to_ListaTipoRecintos"
+            app:destination="@id/ListaTipoRecintosFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/ListaEventosFragment"
@@ -24,18 +49,285 @@
         <action
             android:id="@+id/action_ListaEventos_to_FirstFragment"
             app:destination="@id/FragMenuPrincipal" />
-    </fragment>
-
-
-    <fragment
-        android:id="@+id/ThirdFragment"
-        android:name="pt.ipg.ticketline.FragThirdFragment"
-        android:label="Third Fragment"
-        tools:layout="@layout/fragment_third">
 
         <action
-            android:id="@+id/action_ThirdFragment_to_FirstFragment"
+            android:id="@+id/action_lista_eventos_to_editar_evento"
+            app:destination="@id/EditarEventoFragment" />
+
+        <action
+            android:id="@+id/action_ListaEventosFragment_to_EliminarEventoFragment"
+            app:destination="@id/EliminarEventoFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ListaArtistasFragment"
+        android:name="pt.ipg.ticketline.ListaArtistasFragment"
+        android:label="@string/lista_artistas_label"
+        tools:layout="@layout/fragment_lista_artistas">
+
+        <action
+            android:id="@+id/action_ListaArtistas_to_FirstFragment"
             app:destination="@id/FragMenuPrincipal" />
+
+        <action
+            android:id="@+id/action_lista_artistas_to_editar_artista"
+            app:destination="@id/EditarArtistaFragment" />
+
+        <action
+            android:id="@+id/action_ListaArtistasFragment_to_EliminarArtistaFragment"
+            app:destination="@id/EliminarArtistaFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ListaCategoriasFragment"
+        android:name="pt.ipg.ticketline.ListaCategoriasFragment"
+        android:label="@string/lista_categorias_label"
+        tools:layout="@layout/fragment_lista_categorias">
+
+        <action
+            android:id="@+id/action_ListaCategorias_to_FirstFragment"
+            app:destination="@id/FragMenuPrincipal" />
+
+        <action
+            android:id="@+id/action_lista_categorias_to_editar_categoria"
+            app:destination="@id/EditarCategoriaFragment" />
+
+        <action
+            android:id="@+id/action_ListaCategoriasFragment_to_EliminarCategoriaFragment"
+            app:destination="@id/EliminarCategoriaFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ListaLocaisFragment"
+        android:name="pt.ipg.ticketline.ListaLocaisFragment"
+        android:label="@string/lista_locais_label"
+        tools:layout="@layout/fragment_lista_locais">
+
+        <action
+            android:id="@+id/action_ListaLocais_to_FirstFragment"
+            app:destination="@id/FragMenuPrincipal" />
+
+        <action
+            android:id="@+id/action_lista_locais_to_editar_local"
+            app:destination="@id/EditarLocalFragment" />
+
+        <action
+            android:id="@+id/action_ListaLocaisFragment_to_EliminarLocalFragment"
+            app:destination="@id/EliminarLocalFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ListaNacionalidadesFragment"
+        android:name="pt.ipg.ticketline.ListaNacionalidadesFragment"
+        android:label="@string/lista_nacionalidades_label"
+        tools:layout="@layout/fragment_lista_nacionalidades">
+
+        <action
+            android:id="@+id/action_ListaNacionalidades_to_FirstFragment"
+            app:destination="@id/FragMenuPrincipal" />
+
+        <action
+            android:id="@+id/action_lista_nacionalidades_to_editar_nacionalidade"
+            app:destination="@id/EditarNacionalidadeFragment" />
+
+        <action
+            android:id="@+id/action_ListaNacionalidadesFragment_to_EliminarNacionalidadeFragment"
+            app:destination="@id/EliminarNacionalidadeFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ListaPromotoresFragment"
+        android:name="pt.ipg.ticketline.ListaPromotoresFragment"
+        android:label="@string/lista_promotores_label"
+        tools:layout="@layout/fragment_lista_promotores">
+
+        <action
+            android:id="@+id/action_ListaPromotores_to_FirstFragment"
+            app:destination="@id/FragMenuPrincipal" />
+
+        <action
+            android:id="@+id/action_lista_promotores_to_editar_promotor"
+            app:destination="@id/EditarPromotorFragment" />
+
+        <action
+            android:id="@+id/action_ListaPromotoresFragment_to_EliminarPromotorFragment"
+            app:destination="@id/EliminarPromotorFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ListaTipoRecintosFragment"
+        android:name="pt.ipg.ticketline.ListaTipoRecintosFragment"
+        android:label="@string/lista_tipoRecintos_label"
+        tools:layout="@layout/fragment_lista_tipo_recintos">
+
+        <action
+            android:id="@+id/action_ListaTipoRecintos_to_FirstFragment"
+            app:destination="@id/FragMenuPrincipal" />
+
+        <action
+            android:id="@+id/action_lista_tipoRecintos_to_editar_tipoRecinto"
+            app:destination="@id/EditarTipoRecintoFragment" />
+
+        <action
+            android:id="@+id/action_ListaTipoRecintosFragment_to_EliminarTipoRecintoFragment"
+            app:destination="@id/EliminarTipoRecintoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/EditarTipoRecintoFragment"
+        android:name="pt.ipg.ticketline.EditarTipoRecintoFragment"
+        tools:layout="@layout/fragment_editar_tipo_recinto">
+        <action
+            android:id="@+id/action_editar_tipoRecinto_to_lista_tipoRecintos"
+            app:destination="@id/ListaTipoRecintosFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/EliminarTipoRecintoFragment"
+        android:name="pt.ipg.ticketline.EliminarTipoRecintoFragment"
+        android:label="@string/eliminar_tipoRecinto_label"
+        tools:layout="@layout/fragment_eliminar_tipo_recinto">
+        <action
+            android:id="@+id/action_EliminarTipoRecintoFragment_to_ListaTipoRecintosFragment"
+            app:destination="@id/ListaTipoRecintosFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/EditarArtistaFragment"
+        android:name="pt.ipg.ticketline.EditarArtistaFragment"
+        tools:layout="@layout/fragment_editar_artista">
+        <action
+            android:id="@+id/action_editar_artista_to_lista_artistas"
+            app:destination="@id/ListaArtistasFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/EliminarArtistaFragment"
+        android:name="pt.ipg.ticketline.EliminarArtistaFragment"
+        android:label="@string/eliminar_artista_label"
+        tools:layout="@layout/fragment_eliminar_artista">
+        <action
+            android:id="@+id/action_EliminarArtistaFragment_to_ListaArtistasFragment"
+            app:destination="@id/ListaArtistasFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/EditarCategoriaFragment"
+        android:name="pt.ipg.ticketline.EditarCategoriaFragment"
+        tools:layout="@layout/fragment_editar_categoria">
+        <action
+            android:id="@+id/action_editar_categoria_to_lista_categorias"
+            app:destination="@id/ListaCategoriasFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/EliminarCategoriaFragment"
+        android:name="pt.ipg.ticketline.EliminarCategoriaFragment"
+        android:label="@string/eliminar_categoria_label"
+        tools:layout="@layout/fragment_eliminar_categoria">
+        <action
+            android:id="@+id/action_EliminarCategoriaFragment_to_ListaCategoriasFragment"
+            app:destination="@id/ListaCategoriasFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/EditarLocalFragment"
+        android:name="pt.ipg.ticketline.EditarLocalFragment"
+        tools:layout="@layout/fragment_editar_local">
+        <action
+            android:id="@+id/action_editar_local_to_lista_locais"
+            app:destination="@id/ListaLocaisFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/EliminarLocalFragment"
+        android:name="pt.ipg.ticketline.EliminarLocalFragment"
+        android:label="@string/eliminar_local_label"
+        tools:layout="@layout/fragment_eliminar_local">
+        <action
+            android:id="@+id/action_EliminarLocalFragment_to_ListaLocaisFragment"
+            app:destination="@id/ListaLocaisFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/EditarNacionalidadeFragment"
+        android:name="pt.ipg.ticketline.EditarNacionalidadeFragment"
+        tools:layout="@layout/fragment_editar_nacionalidade">
+        <action
+            android:id="@+id/action_editar_nacionalidade_to_lista_nacionalidades"
+            app:destination="@id/ListaNacionalidadesFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/EliminarNacionalidadeFragment"
+        android:name="pt.ipg.ticketline.EliminarNacionalidadeFragment"
+        android:label="@string/eliminar_nacionalidade_label"
+        tools:layout="@layout/fragment_eliminar_nacionalidade">
+        <action
+            android:id="@+id/action_EliminarNacionalidadeFragment_to_ListaNacionalidadesFragment"
+            app:destination="@id/ListaNacionalidadesFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/EditarPromotorFragment"
+        android:name="pt.ipg.ticketline.EditarPromotorFragment"
+        tools:layout="@layout/fragment_editar_promotor">
+        <action
+            android:id="@+id/action_editar_promotor_to_lista_promotores"
+            app:destination="@id/ListaPromotoresFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/EliminarPromotorFragment"
+        android:name="pt.ipg.ticketline.EliminarPromotorFragment"
+        android:label="@string/eliminar_promotor_label"
+        tools:layout="@layout/fragment_eliminar_promotor">
+        <action
+            android:id="@+id/action_EliminarPromotorFragment_to_ListaPromotoresFragment"
+            app:destination="@id/ListaPromotoresFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/EditarEventoFragment"
+        android:name="pt.ipg.ticketline.EditarEventoFragment"
+        tools:layout="@layout/fragment_editar_evento">
+        <action
+            android:id="@+id/action_editar_evento_to_lista_eventos"
+            app:destination="@id/ListaEventosFragment" />
+        <argument
+            android:name="evento"
+            app:argType="pt.ipg.ticketline.Evento"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/EliminarEventoFragment"
+        android:name="pt.ipg.ticketline.EliminarEventoFragment"
+        android:label="@string/eliminar_evento_label"
+        tools:layout="@layout/fragment_eliminar_evento">
+        <action
+            android:id="@+id/action_EliminarEventoFragment_to_ListaEventosFragment"
+            app:destination="@id/ListaEventosFragment" />
+        <argument
+            android:name="evento"
+            app:argType="pt.ipg.ticketline.Evento"/>
     </fragment>
 
 </navigation>
