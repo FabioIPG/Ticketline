@@ -184,6 +184,11 @@
         <action
             android:id="@+id/action_editar_tipoRecinto_to_lista_tipoRecintos"
             app:destination="@id/ListaTipoRecintosFragment" />
+        <argument
+            android:name="tipoRecinto"
+            app:argType="pt.ipg.ticketline.TipoRecinto"
+            app:nullable="true"
+            android:defaultValue="@null" />
 
     </fragment>
 
@@ -195,6 +200,9 @@
         <action
             android:id="@+id/action_EliminarTipoRecintoFragment_to_ListaTipoRecintosFragment"
             app:destination="@id/ListaTipoRecintosFragment" />
+        <argument
+            android:name="tipoRecinto"
+            app:argType="pt.ipg.ticketline.TipoRecinto" />
 
     </fragment>
 
@@ -205,6 +213,11 @@
         <action
             android:id="@+id/action_editar_artista_to_lista_artistas"
             app:destination="@id/ListaArtistasFragment" />
+        <argument
+            android:name="artista"
+            app:argType="pt.ipg.ticketline.Artista"
+            app:nullable="true"
+            android:defaultValue="@null" />
 
     </fragment>
 
@@ -216,6 +229,9 @@
         <action
             android:id="@+id/action_EliminarArtistaFragment_to_ListaArtistasFragment"
             app:destination="@id/ListaArtistasFragment" />
+        <argument
+            android:name="artista"
+            app:argType="pt.ipg.ticketline.Artista" />
 
     </fragment>
 
@@ -226,6 +242,11 @@
         <action
             android:id="@+id/action_editar_categoria_to_lista_categorias"
             app:destination="@id/ListaCategoriasFragment" />
+        <argument
+            android:name="categoria"
+            app:argType="pt.ipg.ticketline.Categoria"
+            app:nullable="true"
+            android:defaultValue="@null" />
 
     </fragment>
 
@@ -237,6 +258,9 @@
         <action
             android:id="@+id/action_EliminarCategoriaFragment_to_ListaCategoriasFragment"
             app:destination="@id/ListaCategoriasFragment" />
+        <argument
+            android:name="categoria"
+            app:argType="pt.ipg.ticketline.Categoria" />
 
     </fragment>
 
@@ -247,6 +271,11 @@
         <action
             android:id="@+id/action_editar_local_to_lista_locais"
             app:destination="@id/ListaLocaisFragment" />
+        <argument
+            android:name="local"
+            app:argType="pt.ipg.ticketline.Local"
+            app:nullable="true"
+            android:defaultValue="@null" />
 
     </fragment>
 
@@ -258,6 +287,9 @@
         <action
             android:id="@+id/action_EliminarLocalFragment_to_ListaLocaisFragment"
             app:destination="@id/ListaLocaisFragment" />
+        <argument
+            android:name="local"
+            app:argType="pt.ipg.ticketline.Local" />
 
     </fragment>
 
@@ -268,6 +300,11 @@
         <action
             android:id="@+id/action_editar_nacionalidade_to_lista_nacionalidades"
             app:destination="@id/ListaNacionalidadesFragment" />
+        <argument
+            android:name="nacionalidade"
+            app:argType="pt.ipg.ticketline.Nacionalidade"
+            app:nullable="true"
+            android:defaultValue="@null" />
 
     </fragment>
 
@@ -279,6 +316,9 @@
         <action
             android:id="@+id/action_EliminarNacionalidadeFragment_to_ListaNacionalidadesFragment"
             app:destination="@id/ListaNacionalidadesFragment" />
+        <argument
+            android:name="nacionalidade"
+            app:argType="pt.ipg.ticketline.Nacionalidade" />
 
     </fragment>
 
@@ -289,6 +329,11 @@
         <action
             android:id="@+id/action_editar_promotor_to_lista_promotores"
             app:destination="@id/ListaPromotoresFragment" />
+        <argument
+            android:name="promotor"
+            app:argType="pt.ipg.ticketline.Promotor"
+            app:nullable="true"
+            android:defaultValue="@null" />
 
     </fragment>
 
@@ -300,6 +345,9 @@
         <action
             android:id="@+id/action_EliminarPromotorFragment_to_ListaPromotoresFragment"
             app:destination="@id/ListaPromotoresFragment" />
+        <argument
+            android:name="promotor"
+            app:argType="pt.ipg.ticketline.Promotor" />
 
     </fragment>
 
