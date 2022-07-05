@@ -142,7 +142,7 @@ class ListaLocaisFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         adapterLocais!!.cursor = null
     }
 
-    /*
+
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_inserir -> {
@@ -165,7 +165,6 @@ class ListaLocaisFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             else -> false
         }
 
-     */
 
     companion object {
         const val ID_LOADER_LOCAIS = 0
