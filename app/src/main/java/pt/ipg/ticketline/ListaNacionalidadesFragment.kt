@@ -142,7 +142,6 @@ class ListaNacionalidadesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cu
         adapterNacionalidades!!.cursor = null
     }
 
-    /*
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_inserir -> {
@@ -164,8 +163,6 @@ class ListaNacionalidadesFragment : Fragment(), LoaderManager.LoaderCallbacks<Cu
             }
             else -> false
         }
-
-     */
 
 
     companion object {
