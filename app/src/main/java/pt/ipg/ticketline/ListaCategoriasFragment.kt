@@ -142,7 +142,7 @@ class ListaCategoriasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor
         adapterCategorias!!.cursor = null
     }
 
-    /*
+
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_inserir -> {
@@ -165,8 +165,6 @@ class ListaCategoriasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor
             else -> false
         }
 
-
-     */
 
     companion object {
         const val ID_LOADER_CATEGORIAS = 0
