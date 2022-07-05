@@ -142,7 +142,7 @@ class ListaTipoRecintosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
         adapterTipoRecintos!!.cursor = null
     }
 
-    /*
+
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_inserir -> {
@@ -164,9 +164,6 @@ class ListaTipoRecintosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
             }
             else -> false
         }
-
-     */
-
 
 
     companion object {
