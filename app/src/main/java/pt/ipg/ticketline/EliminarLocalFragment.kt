@@ -44,7 +44,7 @@ class EliminarLocalFragment : Fragment() {
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_eliminar
 
-        //local = EliminarLocalFragmentArgs.fromBundle(arguments!!).local
+        local = EliminarLocalFragmentArgs.fromBundle(arguments!!).local
 
         binding.textViewNomeLocal.text = local.nome_local
         binding.textViewLocalizacao.text = local.localizacao
@@ -96,7 +96,7 @@ class EliminarLocalFragment : Fragment() {
     }
 
     private fun voltaListaLocais() {
-        //val acao = EliminarLocalFragmentDirections.actionEliminarLocalFragmentToListaLocaisFragment()
-        //findNavController().navigate(acao)
+        val acao = EliminarLocalFragmentDirections.actionEliminarLocalFragmentToListaLocaisFragment()
+        findNavController().navigate(acao)
     }
 }

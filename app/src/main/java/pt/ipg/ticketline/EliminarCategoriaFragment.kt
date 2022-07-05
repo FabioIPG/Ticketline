@@ -44,7 +44,7 @@ class EliminarCategoriaFragment : Fragment() {
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_eliminar
 
-        //categoria = EliminarCategoriaFragmentArgs.fromBundle(arguments!!).categoria
+        categoria = EliminarCategoriaFragmentArgs.fromBundle(arguments!!).categoria
 
         binding.textViewCategoria.text = categoria.nome_categoria
 
@@ -93,7 +93,7 @@ class EliminarCategoriaFragment : Fragment() {
     }
 
     private fun voltaListaCategorias() {
-        //val acao = EliminarCategoriaFragmentDirections.actionEliminarCategoriaFragmentToListaCategoriasFragment()
-        //findNavController().navigate(acao)
+        val acao = EliminarCategoriaFragmentDirections.actionEliminarCategoriaFragmentToListaCategoriasFragment()
+        findNavController().navigate(acao)
     }
 }

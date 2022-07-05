@@ -43,7 +43,7 @@ class EditarNacionalidadeFragment : Fragment() {
         activity.idMenuAtual = R.menu.menu_edicao
 
         if (arguments != null) {
-            //nacionalidade = EditarNacionalidadeFragmentArgs.fromBundle(arguments!!).nacionalidade
+            nacionalidade = EditarNacionalidadeFragmentArgs.fromBundle(arguments!!).nacionalidade
 
 
             if (nacionalidade != null) {
@@ -111,7 +111,7 @@ class EditarNacionalidadeFragment : Fragment() {
 
 
     private fun voltaListaNacionalidades() {
-        //findNavController().navigate(R.id.action_editar_nacionalidade_to_lista_nacionalidades)
+        findNavController().navigate(R.id.action_editar_nacionalidade_to_lista_nacionalidades)
     }
 
 }

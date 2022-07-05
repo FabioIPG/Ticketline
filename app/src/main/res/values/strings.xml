@@ -1,14 +1,11 @@
 <resources>
     <string name="app_name">Ticketline</string>
     <string name="action_settings">Settings</string>
-
     <string name="first_fragment_label">First Fragment</string>
     <string name="lista_eventos_label">Eventos</string>
     <string name="inserir_evento_label">Inserir Evento</string>
     <string name="alterar_evento_label">Alterar Evento</string>
     <string name="eliminar_evento_label">Eliminar Evento</string>
-
-
     <string name="artistas">Artistas</string>
     <string name="eventos">Eventos</string>
     <string name="categoria">Categoria</string>
@@ -16,30 +13,22 @@
     <string name="locais">Locais</string>
     <string name="tipoTecintos">TipoRecintos</string>
     <string name="nacionalidade">Nacionalidade</string>
-
     <string name="previous">Voltar</string>
-
     <string name="inserir">Inserir</string>
     <string name="alterar">Alterar</string>
     <string name="eliminar">Eliminar</string>
-
     <string name="nome_evento">Nome Evento</string>
     <string name="data">Data</string>
     <string name="local">Local</string>
-
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
-
     <string name="nome_evento_obrigatorio">Preencha o Nome Evento</string>
     <string name="data_obrigatoria">Preencha a Data</string>
     <string name="local_obrigatorio">Escolha o Local</string>
-
     <string name="evento_guardado_sucesso">Evento guardado com sucesso</string>
     <string name="evento_eliminado_sucesso">Evento eliminado com sucesso</string>
-
     <string name="erro_guardar_evento">Erro ao guardar evento</string>
     <string name="erro_eliminar_evento">Erro ao eliminar evento</string>
-
     <string name="confirma_eliminar_evento">Tem a certeza que pretende eliminar o evento? </string>
     <string name="nome_local">Nome Local</string>
     <string name="localizacao">Localizacao</string>
@@ -120,6 +109,8 @@
     <string name="inserir_local_label">Inserir Local</string>
     <string name="inserir_tipoRecinto_label">Inserir Tipo Recinto</string>
     <string name="alterar_tipoRecinto_label">Alterar Tipo Recinto</string>
+    <string name="inserir_nacionalidade_label">Inserir Nacionalidade</string>
+    <string name="alterar_nacionalidade_label">Alterar Nacionalidade</string>
 
 
 </resources>

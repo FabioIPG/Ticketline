@@ -45,7 +45,7 @@ class EliminarPromotorFragment : Fragment() {
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_eliminar
 
-        //promotor = EliminarPromotorFragmentArgs.fromBundle(arguments!!).promotor
+        promotor = EliminarPromotorFragmentArgs.fromBundle(arguments!!).promotor
 
         binding.textViewNomePromotor.text = promotor.nome_promotor
 
@@ -94,10 +94,9 @@ class EliminarPromotorFragment : Fragment() {
     }
 
     private fun voltaListaPromotores() {
-        /*
-        val acao = EliminarPromotorFragmentDirections.actionEliminarEventoFragmentToListaEventosFragment()
+
+        val acao = EliminarPromotorFragmentDirections.actionEliminarPromotorFragmentToListaPromotoresFragment()
         findNavController().navigate(acao)
 
-         */
     }
 }

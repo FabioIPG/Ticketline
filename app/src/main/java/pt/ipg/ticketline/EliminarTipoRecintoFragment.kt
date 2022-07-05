@@ -44,7 +44,7 @@ class EliminarTipoRecintoFragment : Fragment() {
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_eliminar
 
-        //tipoRecinto = EliminarTipoRecintoFragmentArgs.fromBundle(arguments!!).tipoRecinto
+        tipoRecinto = EliminarTipoRecintoFragmentArgs.fromBundle(arguments!!).tipoRecinto
 
         binding.textViewLocal.text = tipoRecinto.nome_tipo_recinto
         binding.textViewLocal.text = tipoRecinto.local.nome_local
@@ -93,7 +93,7 @@ class EliminarTipoRecintoFragment : Fragment() {
     }
 
     private fun voltaListaTipoRecintos() {
-        //val acao = EliminarTipoRecintoFragmentDirections.actionEliminarTipoRecintoFragmentToListaTipoRecintosFragment()
-        //findNavController().navigate(acao)
+        val acao = EliminarTipoRecintoFragmentDirections.actionEliminarTipoRecintoFragmentToListaTipoRecintosFragment()
+        findNavController().navigate(acao)
     }
 }

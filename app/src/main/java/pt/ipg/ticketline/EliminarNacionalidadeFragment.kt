@@ -44,7 +44,7 @@ class EliminarNacionalidadeFragment : Fragment() {
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_eliminar
 
-        //nacionalidade = EliminarNacionalidadeFragmentArgs.fromBundle(arguments!!).nacionalidade
+        nacionalidade = EliminarNacionalidadeFragmentArgs.fromBundle(arguments!!).nacionalidade
 
         binding.textViewNacionalidade.text = nacionalidade.nacionalidade
 
@@ -93,7 +93,7 @@ class EliminarNacionalidadeFragment : Fragment() {
     }
 
     private fun voltaListaNacionalidades() {
-        //val acao = EliminarNacionalidadeFragmentDirections.actionEliminarNacionalidadeFragmentToListaNacionalidadesFragment()
-        //findNavController().navigate(acao)
+        val acao = EliminarNacionalidadeFragmentDirections.actionEliminarNacionalidadeFragmentToListaNacionalidadesFragment()
+        findNavController().navigate(acao)
     }
 }

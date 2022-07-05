@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import pt.ipg.ticketline.databinding.FragmentEditarCategoriaBinding
 
@@ -42,7 +43,7 @@ class EditarCategoriaFragment : Fragment() {
         activity.idMenuAtual = R.menu.menu_edicao
 
         if (arguments != null) {
-            //categoria = EditarCategoriaFragmentArgs.fromBundle(arguments!!).categoria
+            categoria = EditarCategoriaFragmentArgs.fromBundle(arguments!!).categoria
 
 
             if (categoria != null) {
@@ -111,7 +112,7 @@ class EditarCategoriaFragment : Fragment() {
 
 
     private fun voltaListaCategorias() {
-        //findNavController().navigate(R.id.action_editar_categoria_to_lista_categorias)
+        findNavController().navigate(R.id.action_editar_categoria_to_lista_categorias)
     }
 
 }

@@ -49,7 +49,7 @@ class EditarPromotorFragment : Fragment() {
         activity.idMenuAtual = R.menu.menu_edicao
 
         if (arguments != null) {
-            //promotor = EditarPromotorFragmentArgs.fromBundle(arguments!!).promotor
+            promotor = EditarPromotorFragmentArgs.fromBundle(arguments!!).promotor
 
 
             if (promotor != null) {

@@ -49,7 +49,7 @@ class EditarLocalFragment : Fragment() {
         activity.idMenuAtual = R.menu.menu_edicao
 
         if (arguments != null) {
-            //local = EditarLocalFragmentArgs.fromBundle(arguments!!).local
+            local = EditarLocalFragmentArgs.fromBundle(arguments!!).local
 
 
             if (local != null) {
@@ -143,7 +143,7 @@ class EditarLocalFragment : Fragment() {
 
 
     private fun voltaListaLocais() {
-        //findNavController().navigate(R.id.action_editar_local_to_lista_locais)
+        findNavController().navigate(R.id.action_editar_local_to_lista_locais)
     }
 
 }

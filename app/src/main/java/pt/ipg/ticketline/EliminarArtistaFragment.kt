@@ -44,7 +44,7 @@ class EliminarArtistaFragment : Fragment() {
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_eliminar
 
-        //artista = EliminarArtistaFragmentArgs.fromBundle(arguments!!).artista
+        artista = EliminarArtistaFragmentArgs.fromBundle(arguments!!).artista
 
         binding.textViewNomeArtista.text = artista.nome_do_artista
         binding.textViewEndereco.text = artista.endereco
@@ -95,7 +95,7 @@ class EliminarArtistaFragment : Fragment() {
     }
 
     private fun voltaListaArtistas() {
-        //val acao = EliminarArtistaFragmentDirections.actionEliminarArtistaFragmentToListaArtistasFragment()
-        //findNavController().navigate(acao)
+        val acao = EliminarArtistaFragmentDirections.actionEliminarArtistaFragmentToListaArtistasFragment()
+        findNavController().navigate(acao)
     }
 }

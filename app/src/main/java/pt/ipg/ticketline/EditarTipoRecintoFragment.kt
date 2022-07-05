@@ -50,7 +50,7 @@ class EditarTipoRecintoFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
         activity.idMenuAtual = R.menu.menu_edicao
 
         if (arguments != null) {
-            //tipoRecinto = EditarTipoRecintoFragmentArgs.fromBundle(arguments!!).tipoRecinto
+            tipoRecinto = EditarTipoRecintoFragmentArgs.fromBundle(arguments!!).tipoRecinto
 
 
             if (tipoRecinto != null) {
@@ -238,7 +238,7 @@ class EditarTipoRecintoFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
 
 
     private fun voltaListaTipoRecintos() {
-        //findNavController().navigate(R.id.action_editar_tipoRecinto_to_lista_tipoRecintos)
+        findNavController().navigate(R.id.action_editar_tipoRecinto_to_lista_tipoRecintos)
     }
 
 }

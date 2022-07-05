@@ -51,7 +51,7 @@ class EditarArtistaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         activity.idMenuAtual = R.menu.menu_edicao
 
         if (arguments != null) {
-            //artista = EditarArtistaFragmentArgs.fromBundle(arguments!!).artista
+            artista = EditarArtistaFragmentArgs.fromBundle(arguments!!).artista
 
 
             if (artista != null) {
