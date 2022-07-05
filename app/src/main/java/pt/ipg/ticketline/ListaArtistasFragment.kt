@@ -141,7 +141,7 @@ class ListaArtistasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         if(_binding == null) return
         adapterArtistas!!.cursor = null
     }
-    /*
+
     fun processaOpcaoMenu(item: MenuItem) : Boolean =
         when(item.itemId) {
             R.id.action_inserir -> {
@@ -163,10 +163,6 @@ class ListaArtistasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
             }
             else -> false
         }
-
-
-     */
-
 
     companion object {
         const val ID_LOADER_ARTISTAS = 0
