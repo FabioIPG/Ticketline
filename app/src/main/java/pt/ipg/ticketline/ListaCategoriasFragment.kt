@@ -77,7 +77,7 @@ class ListaCategoriasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor
             TabelaBDCategoria.TODAS_COLUNAS,
             null,
             null,
-            "${TabelaBDCategoria.NOME}"
+            "${TabelaBDCategoria.CAMPO_NOME_CATEGORIA}"
         )
 
     /**
